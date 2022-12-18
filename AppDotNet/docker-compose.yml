@@ -1,0 +1,41 @@
+version: "3.7"
+ 
+volumes:
+  portainer_data:
+  sql_data:
+services:
+  web-app:
+    container_name: web-app
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    command: sh -c "dotnet restore && dotnet build && dotnet watch run --no-launch-profile"
+    ports: 
+      - 80:80
+      - 443:443
+      # - 7247 
+      # - 5247
+    working_dir: /app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      # Run on local machine : dotnet dev-certs https -v --trust -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p MySuperPassword
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=MySuperPassword
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ./:/app
+      - ~/.aspnet/https:/https:ro
+  sql-server:
+    container_name: sql-server
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=yourStrong(!)Password
+    volumes:
+      - sql_data:/var/opt/mssql
+  smtp:
+    container_name: smtp
+    image: dockage/mailcatcher:0.8.2
+    ports:
+      - 1080:1080
+      - 1025:1025
