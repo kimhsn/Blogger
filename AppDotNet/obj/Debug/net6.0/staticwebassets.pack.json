@@ -5,12 +5,24 @@
       "PackagePath": "staticwebassets\\AppDotNet.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\LogIn.css",
+      "PackagePath": "staticwebassets\\css\\LogIn.css"
+    },
+    {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog.jpg",
+      "PackagePath": "staticwebassets\\images\\blog.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog2.jpg",
+      "PackagePath": "staticwebassets\\images\\blog2.jpg"
     },
     {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\js\\site.js",
