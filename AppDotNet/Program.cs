@@ -12,6 +12,9 @@ builder.Services.AddDbContext<AppDotNetContext>(options =>
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDotNetContext>();
 
+
+
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -27,12 +30,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-app.UseAuthentication();;
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapRazorPages();
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();

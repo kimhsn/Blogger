@@ -34,3 +34,8 @@ $(function () {
 		$(".forgot").toggleClass("forgot-fade");
 	});
 });
+
+
+document.querySelector(".fa-square-plus").addEventListener('click',() => {
+	document.querySelector(".modal").classList.toggle("show-pop-up");
+});
