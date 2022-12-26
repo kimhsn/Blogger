@@ -59,6 +59,25 @@
           }
         }
       },
+      "i18n/2.1.17": {
+        "type": "package",
+        "compile": {
+          "lib/net40/i18n.Domain.dll": {
+            "related": ".xml"
+          },
+          "lib/net40/i18n.dll": {
+            "related": ".Domain.xml;.XML"
+          }
+        },
+        "runtime": {
+          "lib/net40/i18n.Domain.dll": {
+            "related": ".xml"
+          },
+          "lib/net40/i18n.dll": {
+            "related": ".Domain.xml;.XML"
+          }
+        }
+      },
       "MessagePack/2.1.152": {
         "type": "package",
         "dependencies": {
@@ -4166,6 +4185,44 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "i18n/2.1.17": {
+      "sha512": "X1bRRLAAO7OpZfZnYtAFHet0/6VbhJ8Qo6gT/Sp0yzb1Mg9+38riiLuBtfZfm984ZqCWYqJ+A51VFasdOg3bTQ==",
+      "type": "package",
+      "path": "i18n/2.1.17",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/readme.txt",
+        "i18n.2.1.17.nupkg.sha512",
+        "i18n.nuspec",
+        "lib/net40/i18n.Domain.dll",
+        "lib/net40/i18n.Domain.xml",
+        "lib/net40/i18n.XML",
+        "lib/net40/i18n.dll",
+        "readme.txt",
+        "tools/i18n.POTGenerator/envdte.dll",
+        "tools/i18n.POTGenerator/extension.vsixmanifest",
+        "tools/i18n.POTGenerator/i18n.Domain.dll",
+        "tools/i18n.POTGenerator/i18n.Domain.pdb",
+        "tools/i18n.POTGenerator/i18n.Domain.xml",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.dll",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.pdb",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.pkgdef",
+        "tools/i18n.POTGenerator/i18n.POTGenerator.vsix",
+        "tools/i18n.PostBuild/i18n.Domain.dll",
+        "tools/i18n.PostBuild/i18n.Domain.pdb",
+        "tools/i18n.PostBuild/i18n.Domain.xml",
+        "tools/i18n.PostBuild/i18n.PostBuild.exe",
+        "tools/i18n.PostBuild/i18n.PostBuild.exe.config",
+        "tools/i18n.PostBuild/i18n.PostBuild.pdb",
+        "tools/i18n.PostBuild/i18n.PostBuild.vshost.exe",
+        "tools/i18n.PostBuild/i18n.PostBuild.vshost.exe.config",
+        "tools/i18n.PostBuild/i18n.dll",
+        "tools/i18n.PostBuild/i18n.pdb",
+        "tools/i18n.PostBuild/i18n.xml"
       ]
     },
     "MessagePack/2.1.152": {
@@ -11501,7 +11558,8 @@
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.12",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.11",
       "System.Configuration.ConfigurationManager >= 7.0.0",
-      "System.Data.SqlClient >= 4.8.5"
+      "System.Data.SqlClient >= 4.8.5",
+      "i18N >= 2.1.17"
     ]
   },
   "packageFolders": {
@@ -11590,6 +11648,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.5, )"
+          },
+          "i18N": {
+            "target": "Package",
+            "version": "[2.1.17, )"
           }
         },
         "imports": [
@@ -11614,5 +11676,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Le package 'i18n 2.1.17' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net6.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
+      "libraryId": "i18n",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

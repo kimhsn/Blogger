@@ -36,6 +36,79 @@ $(function () {
 });
 
 
-document.querySelector(".fa-square-plus").addEventListener('click',() => {
-	document.querySelector(".modal").classList.toggle("show-pop-up");
+
+document.querySelector(".close-modifier").addEventListener('click', () => {
+	
+	document.querySelector("#modifierBlog").classList.toggle("show-pop-up");
 });
+
+document.querySelector(".close-assignate").addEventListener('click', () => {
+
+	document.querySelector("#modalAssignate").classList.toggle("show-pop-up");
+});
+
+
+$(function () {
+	$(".fa-user-tie").click(function () {
+		$.ajax({
+			type: "GET",
+			url: "/blogs/admins",
+			success: function (response) {
+				document.getElementById("select-admins").innerHTML = "";
+				response.forEach((admin) => {
+					//var option = `<option value="${admin.id}">${admin.userName}</option>`;
+					let element = document.createElement("option");
+					element.setAttribute("value", admin.id)
+					element.innerHTML = admin.userName;
+					document.getElementById("select-admins").appendChild(element);
+				});
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
+
+	$("#assigner-btn").click(function () {
+		let idBlog = localStorage.getItem('id_admin');
+		let idAdmin = $('#select-admins option:selected').attr("value");
+
+		$.ajax({
+			type: "POST",
+			url: `/blogs/${idBlog}/admins/${idAdmin}/assignate`,
+			success: function (response) {
+				document.location.reload();
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
+
+	$(".fa-pen-to-square").click(function () {
+		let idBlog = localStorage.getItem('blog_id');
+
+		$.ajax({
+			type: "GET",
+			url: `/blogs/details/${idBlog}`,
+			success: function (response) {
+				$("#nom_modifier").val(response.name);
+				$("#prive_modifier").prop('checked', response.prive);
+				$("#form_modifier").attr("action", `/blogs/edit/${response.id}`);
+			},
+			failure: function (response) {
+				alert(response.responseText);
+			},
+			error: function (response) {
+				alert(response.responseText);
+			}
+		});
+	});
+});
+

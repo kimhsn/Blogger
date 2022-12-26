@@ -877,3 +877,5 @@ C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\runtimes\browser\
 C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\Mono.TextTemplating.dll
 C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\System.CodeDom.dll
 C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\i18n.Domain.dll
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\i18n.dll

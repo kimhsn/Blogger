@@ -87,6 +87,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
+            },
+            "i18N": {
+              "target": "Package",
+              "version": "[2.1.17, )"
             }
           },
           "imports": [

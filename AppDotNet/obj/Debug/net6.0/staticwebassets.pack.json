@@ -13,8 +13,16 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\site2.css",
+      "PackagePath": "staticwebassets\\css\\site2.css"
+    },
+    {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\Assignate.PNG",
+      "PackagePath": "staticwebassets\\images\\Assignate.PNG"
     },
     {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog.jpg",
@@ -23,6 +31,14 @@
     {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog2.jpg",
       "PackagePath": "staticwebassets\\images\\blog2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\france.png",
+      "PackagePath": "staticwebassets\\images\\france.png"
+    },
+    {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\great-britain.png",
+      "PackagePath": "staticwebassets\\images\\great-britain.png"
     },
     {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\js\\site.js",

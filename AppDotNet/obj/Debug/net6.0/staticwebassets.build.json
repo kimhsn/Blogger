@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OuDSeQ5zaN7AwGgS4mxlV2ZgsHYxwqlCEZqpsGgo9mo=",
+  "Hash": "DdUK/m70eRGbzyeVpis5JK1r92hv+RDXRH6YDcHEOEg=",
   "Source": "AppDotNet",
   "BasePath": "_content/AppDotNet",
   "Mode": "Default",
@@ -1105,6 +1105,23 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\site2.css",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "css/site2.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site2.css"
+    },
+    {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\favicon.ico",
       "SourceId": "AppDotNet",
       "SourceType": "Discovered",
@@ -1120,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\Assignate.PNG",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/Assignate.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Assignate.PNG"
     },
     {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog.jpg",
@@ -1154,6 +1188,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\blog2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\france.png",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/france.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\france.png"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\great-britain.png",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/great-britain.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\great-britain.png"
     },
     {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\js\\site.js",

@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using AppDotNet.Data;
 using AppDotNet.Entities;
 
+
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDotNetContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDotNetContextConnection' not found.");
 

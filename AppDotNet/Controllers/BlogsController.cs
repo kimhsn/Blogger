@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppDotNet.Data;
 using AppDotNet.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
 namespace AppDotNet.Controllers
 {
@@ -26,8 +28,27 @@ namespace AppDotNet.Controllers
               return View(await _context.Blogs.ToListAsync());
         }
 
-		// GET: Blogs/Details/5
-		[HttpGet("/blogsDetails/5")]
+        // GET: BlogsAdmins
+        [HttpGet("/blogs/admins")]
+        public async Task<IActionResult> getAdmins()
+        {
+
+             var q = (from us in _context.Users
+                     join ur in _context.UserRoles on us.Id equals ur.UserId
+                     join ro in _context.Roles on ur.RoleId equals ro.Id
+                     where ro.Id.Equals("id_admin_blog")
+                     select new
+                     {
+                         us.Id,
+                         us.UserName,
+                     }).ToList();
+            return Json(q);
+
+        }
+
+
+        // GET: Blogs/Details/5
+        [HttpGet("/blogs/details/{id}")]
 		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Blogs == null)
@@ -42,7 +63,7 @@ namespace AppDotNet.Controllers
                 return NotFound();
             }
 
-            return View(blog);
+            return Json(blog);
         }
 
    
@@ -53,15 +74,35 @@ namespace AppDotNet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Prive,CreatedTimestamp")] Blog blog)
         {
-            if (ModelState.IsValid)
+            blog.CreatedTimestamp= DateTime.Now;
+            if(blog.Prive)
             {
-                blog.CreatedTimestamp= DateTime.Now;
-                _context.Add(blog);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                blog.Prive = true;
+            } else
+            {
+                blog.Prive = false;
             }
-            return View(Index);
+            _context.Add(blog);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost("/blogs/{id}/admins/{idAdmin}/assignate")]
+        public async Task<IActionResult> Assignate(int id, int idAdmin)
+        {
+            var blog = await _context.Blogs.FindAsync(id);
+           
+            var user = await _context.Users.FindAsync(idAdmin.ToString());
+
+            blog.Admin = user;
+            //user.Blogs.Add(blog);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: Blogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -82,7 +123,7 @@ namespace AppDotNet.Controllers
         // POST: Blogs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/blogs/edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Prive,CreatedTimestamp")] Blog blog)
         {
@@ -91,8 +132,8 @@ namespace AppDotNet.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+           // if (ModelState.IsValid)
+            //{
                 try
                 {
                     _context.Update(blog);
@@ -110,7 +151,7 @@ namespace AppDotNet.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+           // }
             return View(blog);
         }
 

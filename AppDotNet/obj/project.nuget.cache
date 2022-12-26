@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "UjBFhioXPKYRAnN99hqeu7g6ADMItpEliIx1AF9fi2fYUi2KFy7m7+fCaXZbrWNdxtAqvqIandtzLIkAKDiikg==",
+  "dgSpecHash": "9VcJ1nokljQDv/szWIO0WNHlSjxZsx2W8h8gd8DguqRYNpUfs0E4FziUvpHFFxM9nofjxiuYBntCh0s6FSgOBg==",
   "success": true,
   "projectFilePath": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\AppDotNet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hichem\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\hichem\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\hichem\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\hichem\\.nuget\\packages\\i18n\\2.1.17\\i18n.2.1.17.nupkg.sha512",
     "C:\\Users\\hichem\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\hichem\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\hichem\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
@@ -208,5 +209,16 @@
     "C:\\Users\\hichem\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\hichem\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Le package 'i18n 2.1.17' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net6.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
+      "libraryId": "i18n",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

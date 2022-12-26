@@ -182,11 +182,44 @@ position:relative;
 
 .fa-xmark {
     position: absolute;
-    top: 15px;
+    top: 14px;
     right: 15px;
     transform: scale(1.2);
 }
 
 .fa-user-tie {
     margin-right: 7px;
+}
+
+.flags {
+    background: #f5f5f5;
+    padding: .5rem;
+    right: 0;
+    left: unset;
+    text-align: center;
+    min-width: 4rem;
+    position: absolute;
+    top: 45px;
+    right: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index:1;
+}
+
+
+.flags img {
+    object-fit: scale-down;
+    height: 100%;
+    width: 4rem;
+    filter: grayscale(1);
+    transition: .35s all cubic-bezier(.65,.05,.36,1);
+}
+
+nav .fa-earth-africa {
+    color: white;
+    transform: scale(1.1);
+    margin-right: 16px;
+    margin-top: 13px;
 }

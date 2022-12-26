@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\NewFolder\**" />
+    <Content Remove="Controllers\NewFolder\**" />
+    <EmbeddedResource Remove="Controllers\NewFolder\**" />
+    <None Remove="Controllers\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\HomeController.cs" />
+    <Compile Remove="Controllers\HomeController1.cs" />
+    <Compile Remove="Controllers\ValuesController.cs" />
     <Compile Remove="Entities\Class.cs" />
     <Compile Remove="Pages\Blog.cshtml.cs" />
     <Compile Remove="Pages\Blogs.cs" />
@@ -35,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="i18N" Version="2.1.17" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
