@@ -9,5 +9,6 @@ namespace AppDotNet.Entities;
 // Add profile data for application users by adding properties to the User class
 public class User : IdentityUser
 {
+	public virtual ICollection<Blog> Blogs { get; set; } = null!;
 }
 

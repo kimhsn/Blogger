@@ -17,10 +17,95 @@ namespace AppDotNet.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AppDotNet.Entities.Blog", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("AdminId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedTimestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Prive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AdminId");
+
+                    b.ToTable("Blogs");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Comment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("CreatedTimestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PostID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PostID");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Post", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("BlogID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTimestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NbLikes")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BlogID");
+
+                    b.ToTable("Posts");
+                });
 
             modelBuilder.Entity("AppDotNet.Entities.User", b =>
                 {
@@ -91,14 +176,14 @@ namespace AppDotNet.Migrations
                         {
                             Id = "superviseur",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "41fee155-1789-44ee-93bf-37727a8a6ca5",
+                            ConcurrencyStamp = "ea52a8a6-4dff-4bee-9d56-f18b3c8669e2",
                             Email = "superviseur@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "JOHN_SUPERVISEUR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDCrAcL3gPuuTR5cpHoOvx3rSD6gs6M8JdJDhAv3pNEgEjGxQQS1QNhhYjeTkYeDOw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGhDBBlV4o0OdcftT3sizGwAcuVZ7+TUOfCRQNnsaBamd+lP7Pr3sSOzLD4nF70JtQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0d0d6e20-879c-42b4-9c5b-7ca7236a6bdb",
+                            SecurityStamp = "75703cf4-12ac-417a-80a9-b2332e1c363a",
                             TwoFactorEnabled = false,
                             UserName = "john superviseur"
                         });
@@ -160,7 +245,7 @@ namespace AppDotNet.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -185,7 +270,7 @@ namespace AppDotNet.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -271,6 +356,33 @@ namespace AppDotNet.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("AppDotNet.Entities.Blog", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.User", "Admin")
+                        .WithMany("Blogs")
+                        .HasForeignKey("AdminId");
+
+                    b.Navigation("Admin");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Comment", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Post", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.Blog", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("BlogID");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -320,6 +432,21 @@ namespace AppDotNet.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Blog", b =>
+                {
+                    b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Post", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.User", b =>
+                {
+                    b.Navigation("Blogs");
                 });
 #pragma warning restore 612, 618
         }

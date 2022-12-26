@@ -1,0 +1,170 @@
+﻿@model IEnumerable<AppDotNet.Entities.Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="container cards mt-5 mb-5">
+    <div class="row row-custum ">
+    @foreach (var item in Model) {
+        <div class="col-md-3 col-sm-6 card-custum">
+            <div class="card card-block">
+                <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+                    <h5 class="card-title mt-2" onclick=""> @Html.DisplayFor(modelItem => item.Name)</h5>
+                    <span class="card-title  mb-2">crée le @Html.DisplayFor(modelItem => item.CreatedTimestamp)</span>
+                    @{
+                        if (item.Prive)
+                        {
+                            <i class="fa-solid fa-lock text-info"></i>
+                 
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-earth-africa text-info"></i>
+                        }
+                    }
+                    <div class="interaction">
+                        @{
+                            if (item.Admin is null)
+                            {
+                                    <i class="fa-solid fa-user-tie text-primary" onclick='localStorage.setItem("id_admin", @Html.DisplayFor(modelItem => item.ID));document.querySelector("#modalAssignate").classList.toggle("show-pop-up")'></i>
+                            }
+                        }
+                        <i class="fa-solid fa-pen-to-square text-success" onclick="localStorage.setItem('blog_id', @Html.DisplayFor(modelItem => item.ID));document.querySelector('#modifierBlog').classList.toggle('show-pop-up')"></i>
+                        <form asp-controller="Blogs" action="/blogs/delete/@Html.DisplayFor(modelItem => item.ID)" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit">
+                                <i class="fa-solid fa-trash text-danger"></i>
+                            </button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    }
+</div>
+</div>
+<div class="center-add">
+    <i class="fa-regular fa-square-plus text-primary" onclick="document.querySelector(' #modalLoginAvatar').classList.toggle('show-pop-up')"></i>
+</div>
+
+<!--Ajouter-->
+
+<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog center-all cascading-modal modal-avatar modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header ">
+        <i class="fa-solid fa-xmark"></i>
+        <img src="../images/blog.jpg" alt="avatar" class="rounded-circle img-responsive">
+      </div>
+      <!--Body-->
+      <div class="modal-body text-center mb-1">
+
+        <h5 class="mt-1 mb-2">Ajouter un blog</h5>
+                <form asp-action="Create" action="/blogs/create" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="md-form ml-0 mr-0">
+                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">Nom du blog</label>
+                        <input type="text" type="text" name="Name" class="form-control form-control-sm validate ml-0">
+
+                    </div>
+                    <div class="md-form md-form mt-3 mr-0">
+                        <label data-error="wrong" data-success="right" class="ml-0">Privé</label>
+                        <input class="form-check-input"  type="checkbox" name="Prive" />
+                    </div>
+                   
+
+                    <div class="text-center mt-2">
+                        <button type="submit" class="btn btn-primary mt-1 ">Ajouter </button>
+                    </div>
+                </form>
+       
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+<!--Modifier-->
+
+<div class="modal fade" id="modifierBlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog center-all cascading-modal modal-avatar modal-sm" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header ">
+                <i class="fa-solid fa-xmark close-modifier" "></i>
+                <img src="../images/blog.jpg" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <!--Body-->
+            <div class="modal-body text-center mb-1">
+
+                <h5 class="mt-1 mb-2">Modifier un blog</h5>
+                <form asp-action="Create" action="/blogs/edit" method="post" id="form_modifier">
+                    @Html.AntiForgeryToken()
+
+                    <div class="md-form ml-0 mr-0">
+                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">Nom du blog</label>
+                        <input type="text" id="nom_modifier" type="text" name="Name" class="form-control form-control-sm validate ml-0">
+
+                    </div>
+                    <div class="md-form md-form mt-3 mr-0">
+                        <label data-error="wrong" data-success="right" class="ml-0">Privé</label>
+                        <input class="form-check-input" type="checkbox" name="Prive" />
+                    </div>
+                    <div class="text-center mt-2">
+                        <button type="submit" class="btn btn-primary mt-1 ">Modifier </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+<!--Assigné-->
+
+<div class="modal" id="modalAssignate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog center-all center-all2 cascading-modal modal-avatar modal-sm" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header ">
+                <i class="fa-solid fa-xmark close-assignate"></i>
+                <img src="../images/Assignate.PNG" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <!--Body-->
+            <div class="modal-body text-center mb-1">
+
+                <h5 class="mt-1 mb-2">Assigner à un admin</h5>
+              
+                    <div class="md-form ml-0 mr-0">
+                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2"></label>
+                        <select name="pets" id="select-admins" name="Assigne" class="form-control form-control-sm validate ml-">
+                            <option value="">Séllectionnez l'administrateur à assigné</option>
+                        </select>
+                    </div>
+                    <div class="text-center mt-2">
+                        <button id="assigner-btn" class="btn btn-primary mt-1 ">Assigner </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using AppDotNet.Data;
 using AppDotNet.Entities;
 
+
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDotNetContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDotNetContextConnection' not found.");
 
@@ -11,6 +15,9 @@ builder.Services.AddDbContext<AppDotNetContext>(options =>
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDotNetContext>();
+
+
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -27,12 +34,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-app.UseAuthentication();;
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapRazorPages();
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();

@@ -1,0 +1,1 @@
+﻿INSERT INTO dbo.Blogs (Name ,Prive,CreatedTimestamp)VALUES ('HichemBlog8', 0,CURRENT_TIMESTAMP  );
