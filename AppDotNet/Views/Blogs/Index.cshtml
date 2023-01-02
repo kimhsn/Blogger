@@ -7,10 +7,15 @@
 <div class="container cards mt-5 mb-5">
     <div class="row row-custum ">
     @foreach (var item in Model) {
+        
+
         <div class="col-md-3 col-sm-6 card-custum">
             <div class="card card-block">
                 <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
-                    <h5 class="card-title mt-2" onclick=""> @Html.DisplayFor(modelItem => item.Name)</h5>
+
+                    <a onclick="localStorage.setItem('blog_selected', @Html.DisplayFor(modelItem => item.ID))" href="/blogs/@Html.DisplayFor(modelItem => item.ID)/posts">
+                        <h5 class="card-title mt-2" onclick=""> @Html.DisplayFor(modelItem => item.Name)</h5>
+                    </a>
                     <span class="card-title  mb-2">crée le @Html.DisplayFor(modelItem => item.CreatedTimestamp)</span>
                     @{
                         if (item.Prive)
@@ -23,28 +28,42 @@
                             <i class="fa-solid fa-earth-africa text-info"></i>
                         }
                     }
-                    <div class="interaction">
-                        @{
-                            if (item.Admin is null)
-                            {
-                                    <i class="fa-solid fa-user-tie text-primary" onclick='localStorage.setItem("id_admin", @Html.DisplayFor(modelItem => item.ID));document.querySelector("#modalAssignate").classList.toggle("show-pop-up")'></i>
-                            }
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+
+                            <div class="interaction" id="@Html.DisplayFor(modelItem => item.ID)">
+                                    @{
+                                        if (item.Admin is null)
+                                        {
+                                            <i class="fa-solid fa-user-tie text-primary" onclick='localStorage.setItem("id_blog", @Html.DisplayFor(modelItem => item.ID));document.querySelector("#modalAssignate").classList.toggle("show-pop-up")'></i>
+                                        }
+                                    }
+                                    <i class="fa-solid fa-pen-to-square text-success" onclick="localStorage.setItem('blog_id', @Html.DisplayFor(modelItem => item.ID));document.querySelector('#modifierBlog').classList.toggle('show-pop-up')"></i>
+                                    <form asp-controller="Blogs" action="/blogs/delete/@Html.DisplayFor(modelItem => item.ID)" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit">
+                                            <i class="fa-solid fa-trash text-danger"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                
+                            
+                            
                         }
-                        <i class="fa-solid fa-pen-to-square text-success" onclick="localStorage.setItem('blog_id', @Html.DisplayFor(modelItem => item.ID));document.querySelector('#modifierBlog').classList.toggle('show-pop-up')"></i>
-                        <form asp-controller="Blogs" action="/blogs/delete/@Html.DisplayFor(modelItem => item.ID)" method="post">
-                            @Html.AntiForgeryToken()
-                            <button type="submit">
-                                <i class="fa-solid fa-trash text-danger"></i>
-                            </button>
-                        </form>
-                    </div>
+                    }
+                       
             </div>
         </div>
+            
     }
 </div>
 </div>
-<div class="center-add">
-    <i class="fa-regular fa-square-plus text-primary" onclick="document.querySelector(' #modalLoginAvatar').classList.toggle('show-pop-up')"></i>
+
+
+<div class="add-post" onclick="document.querySelector('#modalLoginAvatar').classList.toggle('show-pop-up')">
+    <i class="fa-solid fa-plus text-primary"></i>
+
 </div>
 
 <!--Ajouter-->
@@ -168,3 +187,20 @@
         <!--/.Content-->
     </div>
 </div>
+
+<script>
+
+    // js selectors
+
+    document.querySelector(".close-modifier").addEventListener('click', () => {
+
+        document.querySelector("#modifierBlog").classList.toggle("show-pop-up");
+    });
+
+    document.querySelector(".close-assignate").addEventListener('click', () => {
+
+        document.querySelector("#modalAssignate").classList.toggle("show-pop-up");
+    });
+
+
+</script>

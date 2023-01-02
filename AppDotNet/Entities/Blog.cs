@@ -13,5 +13,6 @@ namespace AppDotNet.Entities
         public DateTime CreatedTimestamp { get; set; }
         public virtual User Admin { get; set; }
         public virtual ICollection<Post> Posts { get; set; } = null!;
+
     }
 }

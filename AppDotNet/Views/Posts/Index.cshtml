@@ -5,50 +5,156 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NbLikes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedTimestamp)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NbLikes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedTimestamp)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
+
+
+        <div class="col-md-5 post">
+            <div class="panel panel-default">
+            <div class="panel-body">
+                @{ 
+                    if (User.Identity.IsAuthenticated)
+                    {
+
+                            <div id="@Html.DisplayFor(modelItem => item.ID)">
+                   
+                                <form asp-controller="Posts" action="/posts/delete/@Html.DisplayFor(modelItem => item.ID)" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit">
+                                        <i class="fa-solid fa-x"></i>
+                                    </button>
+                                    <input name="blog" type="text" class="remove_blog_hidden"></input>
+                                </form>
+                            </div>
+                    }
+                }
+                <section class="post-heading">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="media">
+                                <div class="media-left">
+                                </div>
+                                <div class="media-body">
+                                      <a href="/posts/@Html.DisplayFor(modelItem => item.ID)" class="anchor-username"><h4 class="media-heading">@Html.DisplayFor(modelItem => item.Name)</h4></a>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                        </div>
+                    </div>
+                </section>
+                <section class="post-body">
+                        @Html.DisplayFor(modelItem => item.Description)
+
+                </section>
+                <section class="post-footer">
+
+                    <div class="post-footer-option container">
+                        <ul class="list-unstyled">
+                               @{
+                                    if (User.Identity.IsAuthenticated)
+                                    {
+
+                                        <div class="like-div">
+
+                                            <button class="like-post">
+                                                <li>
+                                                    <i class="fa-solid fa-thumbs-up" id="@Html.DisplayFor(modelItem => item.ID)"></i>
+                                                    <span id="post-@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.NbLikes)</span>
+                                                </li>
+                                            </button>
+                                        </div>
+                                    }
+                                }
+                            
+                            
+                           
+                            
+                               
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
+<div class="add-post" onclick="document.querySelector('#modalLoginAvatar').classList.toggle('show-pop-up');document.querySelector('#add_blog_hidden').value=localStorage.getItem('blog_selected')">
+    <i class="fa-solid fa-plus"></i>
+</div>
+
+</div>
+
+
+
+<!--Ajouter-->
+
+<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog center-all cascading-modal modal-avatar modal-sm" role="document">
+        <!--Content-->
+        <div class="modal-content costum-model-content">
+
+            <!--Header-->
+            <div class="modal-header ">
+                <i class="fa-solid fa-xmark"></i>
+                <img src="../../images/post.PNG" alt="avatar" class="rounded-circle img-responsive post-img">
+            </div>
+            <!--Body-->
+            <div class="modal-body text-center mb-1">
+
+                <h5 class="mt-1 mb-2">Ajouter un Post</h5>
+                <form action="/posts/create" method="post">
+                        @Html.AntiForgeryToken()
+
+                    <div class="md-form ml-0 mr-0">
+                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">Nom du Post</label>
+                        <input type="text" type="text" name="Name" class="form-control form-control-sm validate ml-0">
+
+                    </div>
+                    <div class="md-form md-form mt-3 mr-0">
+                        <label data-error="wrong" data-success="right" class="ml-0">Description</label>
+                        <textarea rows="5" cols="50" name="Description"></textarea>
+                    </div>
+                    
+                    <input name="blog"  type="text" id="add_blog_hidden"></input>
+                    <div class="text-center mt-2">
+                        <button type="submit" class="btn btn-primary mt-1 ">Ajouter </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+
+<script>
+
+    // js selectors
+    document.querySelectorAll(".remove_blog_hidden").forEach(function (element) {
+        // element refers to the DOM node
+        element.value = localStorage.getItem('blog_selected');
+
+    });
+
+    document.querySelector(".close-modifier").addEventListener('click', () => {
+
+        document.querySelector("#modifierBlog").classList.toggle("show-pop-up");
+    });
+
+    document.querySelector(".close-assignate").addEventListener('click', () => {
+
+        document.querySelector("#modalAssignate").classList.toggle("show-pop-up");
+    });
+
+
+
+
+</script>
+

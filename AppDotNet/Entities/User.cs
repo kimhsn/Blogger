@@ -10,5 +10,11 @@ namespace AppDotNet.Entities;
 public class User : IdentityUser
 {
 	public virtual ICollection<Blog> Blogs { get; set; } = null!;
+
+    public virtual ICollection<Likes> Likes { get; set; } = null!;
+
+    public virtual ICollection<Comment> Comments { get; set; } = null!;
+
+    public virtual ICollection<Post> Posts { get; set; } = null!;
 }
 

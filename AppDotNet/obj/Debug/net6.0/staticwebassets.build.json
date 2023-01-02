@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DdUK/m70eRGbzyeVpis5JK1r92hv+RDXRH6YDcHEOEg=",
+  "Hash": "1tJGfKXSISMUpqGHJcgftubXVLhC4aqbJTEH62s79lc=",
   "Source": "AppDotNet",
   "BasePath": "_content/AppDotNet",
   "Mode": "Default",
@@ -1071,6 +1071,23 @@
       "OriginalItemSpec": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\AppDotNet.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\comments.css",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "css/comments.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\comments.css"
+    },
+    {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\LogIn.css",
       "SourceId": "AppDotNet",
       "SourceType": "Discovered",
@@ -1222,6 +1239,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\great-britain.png"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\post.PNG",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/post.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\post.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\userComments.png",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/userComments.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\userComments.png"
     },
     {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\js\\site.js",

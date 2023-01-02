@@ -17,6 +17,10 @@ body {
     background-size: cover;
 }
 
+.form-register .frame {
+    height: 500px
+}
+
 .btn-animate {
     color: white;
     text-decoration: none;
@@ -32,7 +36,7 @@ body {
 }
 
 .frame {
-    height: 575px;
+    height: 500px;
     width: 430px;
     background: linear-gradient(#5b5f73bf, rgba(35, 43, 85, 0.95)), url('../images/blog2.jpg') no-repeat center center;
     background-size: cover;
@@ -117,7 +121,7 @@ li {
     font-weight: 300;
     padding-left: 37px;
     padding-right: 37px;
-    padding-top: 55px;
+    padding-top: 15px;
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 

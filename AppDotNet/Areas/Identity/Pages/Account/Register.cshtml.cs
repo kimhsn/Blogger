@@ -19,6 +19,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using AppDotNet.Entities;
+using Microsoft.Extensions.Hosting;
+using AppDotNet.Data;
+using static i18n.Helpers.NuggetParser;
+using System.Reflection.Metadata;
 
 namespace AppDotNet.Areas.Identity.Pages.Account
 {
@@ -30,13 +34,14 @@ namespace AppDotNet.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
+		private readonly AppDotNetContext _context;
         public RegisterModel(
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+			AppDotNetContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,7 +49,8 @@ namespace AppDotNet.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-        }
+			_context = context;
+		}
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -98,7 +104,8 @@ namespace AppDotNet.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-        }
+
+		}
 
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -117,17 +124,30 @@ namespace AppDotNet.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.EmailConfirmed = true;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+					var userId = await _userManager.GetUserIdAsync(user);
+					
+                    
+             
+		            var userrole = new IdentityUserRole<String>();
+                    userrole.UserId = userId;
+                    userrole.RoleId = Request.Form["Role"];
 
+					_context.Add(userrole);
+					await _context.SaveChangesAsync();
+
+					return Redirect("/Identity/Account/login");
+					/*
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
+						"/Identity/Account/login",
                         pageHandler: null,
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
@@ -139,12 +159,12 @@ namespace AppDotNet.Areas.Identity.Pages.Account
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
-                    else
+                    /*else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-                    }
-                }
+                    }*/
+				}
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);

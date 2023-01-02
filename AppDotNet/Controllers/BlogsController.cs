@@ -9,6 +9,7 @@ using AppDotNet.Data;
 using AppDotNet.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using NuGet.Packaging;
 
 namespace AppDotNet.Controllers
 {
@@ -25,8 +26,56 @@ namespace AppDotNet.Controllers
 		[HttpGet("/blogs")]
 		public async Task<IActionResult> Index()
         {
-              return View(await _context.Blogs.ToListAsync());
+            if (User.Identity.IsAuthenticated)
+            {
+                return View(await _context.Blogs.ToListAsync());
+            } else
+            {   //affiche que public
+                return View(await _context.Blogs.Where(b => b.Prive == false).ToListAsync());
+            }
+                
         }
+
+        [HttpGet("/user/role")]
+        public async Task<IActionResult> getRole()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+               
+
+                var role = (from a in _context.Users
+                                join b in _context.UserRoles on a.Id equals b.UserId
+                                where a.Id == user.Id
+                                select b).ToList();
+                return Json(role);
+            }
+            else
+            {   
+                return Json("");
+            }
+
+        }
+
+
+        [HttpGet("/admin/blogs")]
+        public async Task<IActionResult> getAdminBlogs()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+
+                var blogs = await _context.Blogs.Where( b => b.Admin == user).ToListAsync();
+
+                return Json(blogs);
+            }
+            else
+            {
+                return Json("");
+            }
+
+        }
+
 
         // GET: BlogsAdmins
         [HttpGet("/blogs/admins")]
@@ -89,16 +138,16 @@ namespace AppDotNet.Controllers
         }
 
         [HttpPost("/blogs/{id}/admins/{idAdmin}/assignate")]
-        public async Task<IActionResult> Assignate(int id, int idAdmin)
+        public async Task<IActionResult> Assignate(int id, string idAdmin)
         {
             var blog = await _context.Blogs.FindAsync(id);
            
             var user = await _context.Users.FindAsync(idAdmin.ToString());
 
             blog.Admin = user;
-            //user.Blogs.Add(blog);
-
-            await _context.SaveChangesAsync();
+			_context.Update(blog);
+			await _context.SaveChangesAsync();
+           
 
             return RedirectToAction(nameof(Index));
         }
@@ -132,27 +181,24 @@ namespace AppDotNet.Controllers
                 return NotFound();
             }
 
-           // if (ModelState.IsValid)
-            //{
-                try
+            try
+            {
+                _context.Update(blog);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BlogExists(blog.ID))
                 {
-                    _context.Update(blog);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!BlogExists(blog.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
-           // }
-            return View(blog);
+            }
+            return RedirectToAction(nameof(Index));
+           
         }
 
         // GET: Blogs/Delete/5

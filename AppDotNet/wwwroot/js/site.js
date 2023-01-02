@@ -37,15 +37,29 @@ $(function () {
 
 
 
-document.querySelector(".close-modifier").addEventListener('click', () => {
+$(document).on('click', '.fa-thumbs-up', function () {
 	
-	document.querySelector("#modifierBlog").classList.toggle("show-pop-up");
+	let idPost = $(this).attr("id")
+
+
+	$.ajax({
+		type: "POST",
+		url: `/posts/${idPost}/like`,
+		success: function (response) {
+			$(`#post-${idPost}`).text(response);
+		},
+		failure: function (response) {
+			alert(response.responseText);
+		},
+		error: function (response) {
+			alert(response.responseText);
+		}
+	});
 });
 
-document.querySelector(".close-assignate").addEventListener('click', () => {
 
-	document.querySelector("#modalAssignate").classList.toggle("show-pop-up");
-});
+
+
 
 
 $(function () {
@@ -73,14 +87,17 @@ $(function () {
 	});
 
 	$("#assigner-btn").click(function () {
-		let idBlog = localStorage.getItem('id_admin');
+		let idBlog = localStorage.getItem('id_blog');
 		let idAdmin = $('#select-admins option:selected').attr("value");
-
+		let url = `/blogs/${idBlog}/admins/${idAdmin}/assignate`;
+		
 		$.ajax({
 			type: "POST",
-			url: `/blogs/${idBlog}/admins/${idAdmin}/assignate`,
+			url: url,
 			success: function (response) {
-				document.location.reload();
+				//document.location.reload();
+				//console.log(response);
+				console.log(response);
 			},
 			failure: function (response) {
 				alert(response.responseText);
@@ -110,5 +127,53 @@ $(function () {
 			}
 		});
 	});
+
+
+
+	
 });
+
+
+
+
+$(document).ready(function () {
+
+	$.ajax({
+		type: "GET",
+		url: `/user/role`,
+		success: function (response) {
+			/*if (response[0].roleId == "id_admin_blog") {
+				let blogs = [1]
+				document.querySelectorAll(".interaction").forEach(e => {
+					if (blogs.includes(e.id)) {
+						e.remove();
+					}  
+					
+				});
+			} */
+			$.ajax({
+				type: "GET",
+				url: `/admin/blogs`,
+				success: function (responseLast) {
+					console.log(responseLast);
+				}
+				
+			});
+			console.log(response);
+		},
+		failure: function (response) {
+			alert(response.responseText);
+		},
+		error: function (response) {
+			alert(response.responseText);
+		}
+	});
+
+
+
+	//like
+	
+
+});
+
 
