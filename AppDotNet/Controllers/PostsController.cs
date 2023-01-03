@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AppDotNet.Data;
 using AppDotNet.Entities;
-using Microsoft.Extensions.Hosting;
-using System.Reflection.Metadata;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http.Extensions;
-using static i18n.Helpers.NuggetParser;
+using System.Security.Claims;
+using AppDotNet.Models;
 
 namespace AppDotNet.Controllers
 {
@@ -28,8 +20,17 @@ namespace AppDotNet.Controllers
         [HttpGet("blogs/{id}/posts")]
         public async Task<IActionResult> Index(int id)
         {
-          
-            var post = await _context.Posts.Where(m => m.Blog.ID == id).ToListAsync();
+            var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var post = await _context.Posts.Where(m => m.Blog.ID == id).Select(post => new PostModel()
+            {
+                ID = post.ID,
+                Description = post.Description,
+                Name = post.Name,
+                NbLikes = post.NbLikes,
+                AlreadyLiked = _context.Likes.Any(u => u.post == post && u.user.Id == UserId)
+             }).ToListAsync();
+
             return View(post);
           
         }
@@ -39,11 +40,14 @@ namespace AppDotNet.Controllers
         [HttpPost("posts/{id}/like")]
         public async Task<IActionResult> like(int id)
         {
+            var test = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _context.Users.FirstOrDefaultAsync( u => u.Email == User.Identity.Name);
 
             var post = await _context.Posts.FindAsync(id);
 
+
             //test 
+            //var post = await _context.Likes.FirstOrDefault(like => like.);
 
             //ajouter 
             Likes like = new Likes();

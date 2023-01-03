@@ -374,3 +374,20 @@ body {
     top: -14%;
     left: 45%;
 }
+.not_liked i {
+    color: #a9a9a9;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+.already_liked i {
+    color: #0dcaf0;
+    transform: scale(1.5);
+}
+
+.already_liked span, .not_liked span {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.add_comment_hidden {
+    display:none;
+}

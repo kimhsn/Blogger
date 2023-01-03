@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AppDotNet.Data;
 using AppDotNet.Entities;
 using Microsoft.Extensions.Hosting;
+using AppDotNet.Models;
 
 namespace AppDotNet.Controllers
 {
@@ -24,9 +25,18 @@ namespace AppDotNet.Controllers
         [HttpGet("/posts/{idPost}")]
         public async Task<IActionResult> Index(int idPost)
         {
-            var comments = await _context.Comments.Where(c => c.Post.ID == idPost).ToListAsync();
-            
-            return View(await _context.Comments.ToListAsync());
+            var comments = await _context.Comments.Where(c => c.Post.ID == idPost).Select(comment => new CommentModel()
+            {
+                ID = comment.ID,
+                Description = comment.Description,
+                CreatedTimestamp = comment.CreatedTimestamp,
+                postName = comment.Post.Name,
+                postDescription = comment.Post.Description,
+                postId = comment.Post.ID,
+            }).ToListAsync(); 
+
+
+            return View(comments);
         }
 
         // GET: Comments/Details/5
@@ -60,9 +70,9 @@ namespace AppDotNet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Description,CreatedTimestamp")] Comment comment)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
-            var post = await _context.Posts.FirstOrDefaultAsync(p => p.ID == 11);
             int postId = Int16.Parse(Request.Form["post"]);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+            var post = await _context.Posts.FirstOrDefaultAsync(p => p.ID == postId);
 
             comment.CreatedTimestamp = DateTime.Now;
             comment.User = user;
@@ -71,7 +81,7 @@ namespace AppDotNet.Controllers
             _context.Add(comment);
             await _context.SaveChangesAsync();
 
-            return Redirect("/posts/" + postId);
+            return Redirect("/posts/"+ postId);
         }
 
         // GET: Comments/Edit/5

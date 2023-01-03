@@ -1,25 +1,27 @@
-﻿@model IEnumerable<AppDotNet.Entities.Post>
-
+﻿@using System.Security.Claims;
+@using AppDotNet.Data;
+@model IEnumerable<AppDotNet.Models.PostModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
+    var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier); //@UserId     
+
 }
 
 <div class="container">
 
 
 @foreach (var item in Model) {
-
-
+    
         <div class="col-md-5 post">
             <div class="panel panel-default">
             <div class="panel-body">
-                @{ 
-                    if (User.Identity.IsAuthenticated)
-                    {
-
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                           
                             <div class="remove_post_form" id="@Html.DisplayFor(modelItem => item.ID)">
-                   
+
                                 <form asp-controller="Posts" action="/posts/delete/@Html.DisplayFor(modelItem => item.ID)" method="post">
                                     @Html.AntiForgeryToken()
                                     <button type="submit" class="remove_post_btn">
@@ -28,6 +30,8 @@
                                     <input name="blog" type="text" class="remove_blog_hidden"></input>
                                 </form>
                             </div>
+                            
+                           
                     }
                 }
                 <section class="post-heading">
@@ -37,7 +41,9 @@
                                 <div class="media-left">
                                 </div>
                                 <div class="media-body">
-                                      <a href="/posts/@Html.DisplayFor(modelItem => item.ID)" class="anchor-username"><h4 class="media-heading">@Html.DisplayFor(modelItem => item.Name)</h4></a>
+                                      <a 
+                                          href="/posts/@Html.DisplayFor(modelItem => item.ID)" class="anchor-username"
+                                          onclick="localStorage.setItem('selected_post',@Html.DisplayFor(modelItem => item.ID))"><h4 class="media-heading">@Html.DisplayFor(modelItem => item.Name)</h4></a>
                                         
                                 </div>
                             </div>
@@ -55,19 +61,28 @@
 
                     <div class="post-footer-option container">
                         <ul class="list-unstyled">
-                               @{
+                                @{
                                     if (User.Identity.IsAuthenticated)
                                     {
+                                        if (!item.AlreadyLiked)
+                                        {
+                                            <div class="like-div not_liked">
+                                                
+                                                 <span id="post-@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.NbLikes)</span>
+                                                <i class="fa-solid fa-thumbs-up" id="@Html.DisplayFor(modelItem => item.ID)"></i>
 
-                                        <div class="like-div">
+                                                
+                                            </div>
+                                        } else
+                                        {
+                                            <div class="like-div already_liked">
 
-                                            <button class="like-post">
-                                                <li>
-                                                    <i class="fa-solid fa-thumbs-up" id="@Html.DisplayFor(modelItem => item.ID)"></i>
                                                     <span id="post-@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.NbLikes)</span>
-                                                </li>
-                                            </button>
-                                        </div>
+                                                    <i class="fa-solid fa-thumbs-up" id="@Html.DisplayFor(modelItem => item.ID)"></i>
+                                                   
+                                            </div>
+                                        }
+
                                     }
                                 }
                             

@@ -37,7 +37,7 @@ $(function () {
 
 
 
-$(document).on('click', '.fa-thumbs-up', function () {
+$(document).on('click', '.not_liked .fa-thumbs-up', function () {
 	
 	let idPost = $(this).attr("id")
 
@@ -159,7 +159,6 @@ $(document).ready(function () {
 					}
 
 				});
-
 
 			} else if (response[0].roleId == "id_utilisateur") {
 				document.querySelectorAll(".interaction").forEach(e => {
