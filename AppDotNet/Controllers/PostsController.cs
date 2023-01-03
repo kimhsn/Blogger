@@ -28,8 +28,10 @@ namespace AppDotNet.Controllers
         [HttpGet("blogs/{id}/posts")]
         public async Task<IActionResult> Index(int id)
         {
+          
             var post = await _context.Posts.Where(m => m.Blog.ID == id).ToListAsync();
             return View(post);
+          
         }
 
 

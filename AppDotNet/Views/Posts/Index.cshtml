@@ -18,11 +18,11 @@
                     if (User.Identity.IsAuthenticated)
                     {
 
-                            <div id="@Html.DisplayFor(modelItem => item.ID)">
+                            <div class="remove_post_form" id="@Html.DisplayFor(modelItem => item.ID)">
                    
                                 <form asp-controller="Posts" action="/posts/delete/@Html.DisplayFor(modelItem => item.ID)" method="post">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit">
+                                    <button type="submit" class="remove_post_btn">
                                         <i class="fa-solid fa-x"></i>
                                     </button>
                                     <input name="blog" type="text" class="remove_blog_hidden"></input>
@@ -94,7 +94,7 @@
 
 <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog center-all cascading-modal modal-avatar modal-sm" role="document">
+    <div class="modal-dialog center-all cascading-modal modal-avatar modal-sm add-post-modal" role="document">
         <!--Content-->
         <div class="modal-content costum-model-content">
 

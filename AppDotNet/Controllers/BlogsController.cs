@@ -44,10 +44,9 @@ namespace AppDotNet.Controllers
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
                
 
-                var role = (from a in _context.Users
-                                join b in _context.UserRoles on a.Id equals b.UserId
-                                where a.Id == user.Id
-                                select b).ToList();
+                var role = (from a in _context.UserRoles
+                                where a.UserId == user.Id
+                                select a).ToList();
                 return Json(role);
             }
             else
@@ -65,14 +64,17 @@ namespace AppDotNet.Controllers
             {
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
 
-                var blogs = await _context.Blogs.Where( b => b.Admin == user).ToListAsync();
 
+                var blogs = (from b in _context.Blogs
+                             join ur in _context.Users on b.Admin.Id equals "2f8b9ab3-ad7f-4f4c-9035-ac63965fde31"
+                             select b.ID).Distinct().ToList();
+                
                 return Json(blogs);
             }
             else
             {
                 return Json("");
-            }
+            }                                                                                           
 
         }
 
@@ -124,7 +126,8 @@ namespace AppDotNet.Controllers
         public async Task<IActionResult> Create([Bind("ID,Name,Prive,CreatedTimestamp")] Blog blog)
         {
             blog.CreatedTimestamp= DateTime.Now;
-            if(blog.Prive)
+
+            if(Request.Form["Prive"].Equals("on"))
             {
                 blog.Prive = true;
             } else
@@ -162,6 +165,7 @@ namespace AppDotNet.Controllers
             }
 
             var blog = await _context.Blogs.FindAsync(id);
+
             if (blog == null)
             {
                 return NotFound();
@@ -183,6 +187,14 @@ namespace AppDotNet.Controllers
 
             try
             {
+                if (Request.Form["Prive"].Equals("on"))
+                {
+                    blog.Prive = true;
+                }
+                else
+                {
+                    blog.Prive = false;
+                }
                 _context.Update(blog);
                 await _context.SaveChangesAsync();
             }

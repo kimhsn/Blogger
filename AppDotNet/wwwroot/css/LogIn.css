@@ -521,8 +521,29 @@ a.btn-goback:hover {
     transition: fill 0.25s ease, transform 0.25s ease;
 }
 
-    .refreshicon:hover {
-        cursor: pointer;
-        fill: #1059ff;
-        transform: rotate(180deg);
-    }
+.refreshicon:hover {
+    cursor: pointer;
+    fill: #1059ff;
+    transform: rotate(180deg);
+}
+
+#registerSubmit, #login-submit {
+    margin-top: 15px;
+}
+
+#registerSubmit {
+    padding-top: 0px !important
+}
+
+.register_container {
+    padding-top: 0% !important;
+}
+
+.login_frame {
+    height: 370px;
+    margin-top: 4%;
+}
+
+.register_container .frame {
+    height: 539px !important;
+}

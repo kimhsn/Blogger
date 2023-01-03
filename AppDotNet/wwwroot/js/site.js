@@ -142,24 +142,30 @@ $(document).ready(function () {
 		type: "GET",
 		url: `/user/role`,
 		success: function (response) {
-			/*if (response[0].roleId == "id_admin_blog") {
-				let blogs = [1]
-				document.querySelectorAll(".interaction").forEach(e => {
-					if (blogs.includes(e.id)) {
-						e.remove();
-					}  
-					
-				});
-			} */
-			$.ajax({
-				type: "GET",
-				url: `/admin/blogs`,
-				success: function (responseLast) {
-					console.log(responseLast);
-				}
-				
-			});
 			console.log(response);
+			if (response[0].roleId == "id_admin_blog") {
+				$.ajax({
+					type: "GET",
+					url: `/admin/blogs`,
+					success: function (responseLast) {
+						console.log(responseLast);
+						let blogs = responseLast;
+						document.querySelectorAll(".interaction").forEach(e => {
+							if (!blogs.includes(parseInt(e.id))) {
+								e.remove();
+							}
+
+						});
+					}
+
+				});
+
+
+			} else if (response[0].roleId == "id_utilisateur") {
+				document.querySelectorAll(".interaction").forEach(e => {
+					e.remove();
+				});
+			}
 		},
 		failure: function (response) {
 			alert(response.responseText);

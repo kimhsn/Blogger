@@ -349,3 +349,28 @@ body {
 #add_blog_hidden, .remove_blog_hidden {
     display: none;
 }
+
+.remove_post_btn {
+    border: none;
+    background: transparent;
+    color: #0dcaf0;
+    width:fit-content;
+}
+
+.remove_post_form {
+    position: relative;
+   
+}
+
+.remove_post_form form {
+    width: fit-content;
+    position: absolute;
+    right: -17px;
+    top: -3px;
+}
+
+.add-post-modal {
+    position: absolute;
+    top: -14%;
+    left: 45%;
+}
