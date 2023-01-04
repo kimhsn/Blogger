@@ -97,9 +97,15 @@
         </div>
     </div>
 }
-<div class="add-post" onclick="document.querySelector('#modalLoginAvatar').classList.toggle('show-pop-up');document.querySelector('#add_blog_hidden').value=localStorage.getItem('blog_selected')">
-    <i class="fa-solid fa-plus"></i>
-</div>
+ 
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+    <div class="add-post" onclick="document.querySelector('#addPost').classList.toggle('show-pop-up');document.querySelector('#add_blog_hidden').value=localStorage.getItem('blog_selected')">
+        <i class="fa-solid fa-plus"></i>
+    </div>
+    }
+ }
 
 </div>
 
@@ -107,7 +113,7 @@
 
 <!--Ajouter-->
 
-<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="addPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog center-all cascading-modal modal-avatar modal-sm add-post-modal" role="document">
         <!--Content-->
@@ -115,7 +121,7 @@
 
             <!--Header-->
             <div class="modal-header ">
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-xmark close-add-post"></i>
                 <img src="../../images/post.PNG" alt="avatar" class="rounded-circle img-responsive post-img">
             </div>
             <!--Body-->
@@ -153,19 +159,25 @@
 
     // js selectors
     document.querySelectorAll(".remove_blog_hidden").forEach(function (element) {
-        // element refers to the DOM node
         element.value = localStorage.getItem('blog_selected');
 
+    });
+
+  
+
+    document.querySelector(".close-add-post").addEventListener('click', () => {
+
+        document.querySelector("#addPost").classList.toggle("show-pop-up");
+    });
+
+    document.querySelector(".close-assignate").addEventListener('click', () => {
+
+        document.querySelector("#addPost").classList.toggle("show-pop-up");
     });
 
     document.querySelector(".close-modifier").addEventListener('click', () => {
 
         document.querySelector("#modifierBlog").classList.toggle("show-pop-up");
-    });
-
-    document.querySelector(".close-assignate").addEventListener('click', () => {
-
-        document.querySelector("#modalAssignate").classList.toggle("show-pop-up");
     });
 
 

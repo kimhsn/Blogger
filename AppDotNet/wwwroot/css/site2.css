@@ -156,14 +156,15 @@ h5.card-title {
     position: absolute;
     bottom: 0px;
     right: 20px;
-    display: flex;
+    display: none;
     bottom: 15px;
 }
+
 
 .show-pop-up {
     opacity: 1 !important;
     display: flex !important;
-    background :#000000bf; 
+    background: #000000bf;
 }
 
 .center-all {
@@ -202,6 +203,7 @@ position:relative;
     top: 14px;
     right: 15px;
     transform: scale(1.2);
+    cursor:pointer;
 }
 
 .fa-user-tie {
@@ -328,16 +330,24 @@ body {
 .add-post {
     width: 50px;
     height: 50px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:fixed;
-    bottom:15px;
-    right:15px;
-    background:#0dcaf0;
-    color:white;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #0dcaf0;
+    color: white;
+    border-radius: 6px;
 }
+
+.add-post .fa-plus {
+    transform:scale(1.5);
+    color:#fff !important;
+    cursor:pointer;
+}
+
+
 .costum-model-content {
     width:fit-content;
 }
@@ -357,9 +367,12 @@ body {
     width:fit-content;
 }
 
+#add_blog_btn {
+    display: none;
+}
+
 .remove_post_form {
     position: relative;
-   
 }
 
 .remove_post_form form {
@@ -390,4 +403,13 @@ body {
 }
 .add_comment_hidden {
     display:none;
+}
+#description_comment {
+    display:none;
+}
+#exemple { 
+    margin-bottom:10px;
+}
+.remove_post_btn i {
+    display: none;
 }

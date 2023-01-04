@@ -10,6 +10,8 @@ using AppDotNet.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using NuGet.Packaging;
+using AppDotNet.Models;
+
 
 namespace AppDotNet.Controllers
 {
@@ -28,10 +30,24 @@ namespace AppDotNet.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return View(await _context.Blogs.ToListAsync());
+                return View(await _context.Blogs.Select(blog => new BlogModel()
+                {
+                    ID = blog.ID,
+                    Name = blog.Name,
+                    Prive = blog.Prive,
+                    CreatedTimestamp = blog.CreatedTimestamp,
+                    AdminEmail = blog.Admin.Email
+                }).ToListAsync());
+
             } else
             {   //affiche que public
-                return View(await _context.Blogs.Where(b => b.Prive == false).ToListAsync());
+                return View(await _context.Blogs.Where(b => b.Prive == false).Select(blog => new BlogModel()
+                {
+                    ID = blog.ID,
+                    Name = blog.Name,
+                    Prive = blog.Prive,
+                    CreatedTimestamp = blog.CreatedTimestamp,
+                }).ToListAsync());
             }
                 
         }
