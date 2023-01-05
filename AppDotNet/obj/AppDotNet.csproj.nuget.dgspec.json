@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\AppDotNet.csproj": {}
+    "C:\\Users\\Dell\\Desktop\\.net\\.NetProject\\AppDotNet\\AppDotNet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\AppDotNet.csproj": {
+    "C:\\Users\\Dell\\Desktop\\.net\\.NetProject\\AppDotNet\\AppDotNet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\AppDotNet.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\.net\\.NetProject\\AppDotNet\\AppDotNet.csproj",
         "projectName": "AppDotNet",
-        "projectPath": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\AppDotNet.csproj",
-        "packagesPath": "C:\\Users\\hichem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\obj\\",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\.net\\.NetProject\\AppDotNet\\AppDotNet.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\.net\\.NetProject\\AppDotNet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hichem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -112,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
