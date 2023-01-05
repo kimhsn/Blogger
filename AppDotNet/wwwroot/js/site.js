@@ -155,7 +155,8 @@ $(document).ready(function () {
 								e.remove();
 							} else {
 								$(e).css('display', 'flex');
-								//$(e).children().eq(0).remove();
+								$(e).children().eq(0).remove();
+								$(e).children().eq(1).remove();
 							}
 						});
 					}

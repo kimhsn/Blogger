@@ -384,8 +384,12 @@ body {
 
 .add-post-modal {
     position: absolute;
-    top: -14%;
-    left: 45%;
+    top: 0% !important;
+    left: 16% !important;
+    width: 75% !important;
+    transform: none !important;
+    max-width: 800px !important;
+    max-height:400px !important;
 }
 .not_liked i {
     color: #a9a9a9;
@@ -412,4 +416,7 @@ body {
 }
 .remove_post_btn i {
     display: none;
+}
+#description_post {
+    display:none;
 }

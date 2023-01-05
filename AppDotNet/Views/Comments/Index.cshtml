@@ -48,7 +48,7 @@
                                             User.Identity.Name
                                             )</span></div>
                                         </div>
-                                        <span class="text1">@Html.DisplayFor(modelItem => item.Description)</span>
+                                        <span class="text1">@Html.Raw(item.Description)</span>
 
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
     var editor = new FroalaEditor('#example',{
       events: {
         'charCounter.update': function () {
-                inputDescription.value = this.el.innerText;//innerHTML
+                inputDescription.value = this.el.innerHTML;//innerHTML
         }
       }
     });
