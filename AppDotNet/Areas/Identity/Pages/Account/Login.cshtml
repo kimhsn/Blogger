@@ -7,11 +7,10 @@
 <link rel="stylesheet" href="~/css/LogIn.css" asp-append-version="true" />
 
 <div class="container">
-	<div class="frame">
+	<div class="frame login_frame">
 		<div class="nav">
 			<ul class="links">
 				<li class="signin-active"><a class="btn">Se Connecter</a></li>
-				<li class="signup-inactive"><a class="btn">S'inscrire</a></li>
 			</ul>
 		</div>
 		<div ng-app ng-init="checked = false">
@@ -26,8 +25,6 @@
 				<input asp-for="Input.Password" class="form-styling" autocomplete="current-password" type="password" aria-required="true" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
 				
-				<input type="checkbox" id="checkbox"  asp-for="Input.RememberMe" />
-				<label asp-for="Input.RememberMe" class="form-label"> <span class="ui"></span>Se souvenir de moi</label>
 
 				<button id="login-submit" class="btn-animate" type="submit">  <a class="btn-signin">Se Connecter</a></button>
 
@@ -40,7 +37,6 @@
 					</div>
 			</div>
 		</div>
-		<div class="forgot"> <a  asp-page="./ForgotPassword">>Vous avez oublié votre mot de passe ?</a> </div>
 			<div>
 				<div class="cover-photo"></div>
 				<div class="profile-photo"></div>

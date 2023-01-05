@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AppDotNet.Data;
 using AppDotNet.Entities;
+using System.Security.Claims;
+using AppDotNet.Models;
 
 namespace AppDotNet.Controllers
 {
@@ -20,10 +17,59 @@ namespace AppDotNet.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index()
+        [HttpGet("blogs/{id}/posts")]
+        public async Task<IActionResult> Index(int id)
         {
-              return View(await _context.Posts.ToListAsync());
+            var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var post = await _context.Posts.Where(m => m.Blog.ID == id).Select(post => new PostModel()
+            {
+                ID = post.ID,
+                Description = post.Description,
+                Name = post.Name,
+                NbLikes = post.NbLikes,
+                AlreadyLiked = _context.Likes.Any(u => u.post == post && u.user.Id == UserId)
+             }).ToListAsync();
+
+            return View(post);
+          
         }
+
+
+        // GET: Posts
+        [HttpPost("posts/{id}/like")]
+        public async Task<IActionResult> like(int id)
+        {
+            var test = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _context.Users.FirstOrDefaultAsync( u => u.Email == User.Identity.Name);
+
+            var post = await _context.Posts.FindAsync(id);
+
+
+            //test 
+            //var post = await _context.Likes.FirstOrDefault(like => like.);
+
+            //ajouter 
+            Likes like = new Likes();
+            like.user = user;
+            like.post = post;
+            _context.Add(like);
+            await _context.SaveChangesAsync();
+
+            //modifier post
+            //select count(userid) from dbo.likes where postID = 2;
+            var nbLikes = (from lk in _context.Likes
+
+                           where lk.post.ID.Equals(id)
+                           select new{ lk.ID}).Count();
+
+            post.NbLikes = nbLikes;
+            await _context.SaveChangesAsync();
+
+			return Json(nbLikes);
+        }
+
+
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -52,17 +98,27 @@ namespace AppDotNet.Controllers
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("/posts/create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Description,NbLikes,CreatedTimestamp")] Post post)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(post);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(post);
+            int blogId = Int16.Parse(Request.Form["blog"]);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+            var blog = await _context.Blogs.FirstOrDefaultAsync(b => b.ID == blogId);
+
+          
+            post.CreatedTimestamp = DateTime.Now;
+            post.NbLikes = 0;
+            post.User = user;
+            post.Blog = blog;
+
+
+            _context.Add(post);
+            await _context.SaveChangesAsync();
+
+            return Redirect("/blogs/"+blogId+"/posts");
+            
+            
         }
 
         // GET: Posts/Edit/5
@@ -135,7 +191,7 @@ namespace AppDotNet.Controllers
         }
 
         // POST: Posts/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("/posts/delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -144,13 +200,17 @@ namespace AppDotNet.Controllers
                 return Problem("Entity set 'AppDotNetContext.Posts'  is null.");
             }
             var post = await _context.Posts.FindAsync(id);
+                        int blogId = Int16.Parse(Request.Form["blog"]);
+
             if (post != null)
             {
                 _context.Posts.Remove(post);
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            
+            return Redirect("/blogs/" + blogId + "/posts");
         }
 
         private bool PostExists(int id)

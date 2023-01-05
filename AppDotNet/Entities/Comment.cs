@@ -6,5 +6,8 @@
         public string Description { get; set; }
         public DateTime CreatedTimestamp { get; set; }
         public virtual Post Post { get; set; }
+
+        public virtual User User { get; set; }
+
     }
 }

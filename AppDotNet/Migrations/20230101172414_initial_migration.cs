@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AppDotNet.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -189,16 +189,23 @@ namespace AppDotNet.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NbLikes = table.Column<int>(type: "int", nullable: false),
                     CreatedTimestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BlogID = table.Column<int>(type: "int", nullable: true)
+                    BlogID = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.ID);
                     table.ForeignKey(
+                        name: "FK_Posts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Posts_Blogs_BlogID",
                         column: x => x.BlogID,
                         principalTable: "Blogs",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,14 +216,45 @@ namespace AppDotNet.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedTimestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PostID = table.Column<int>(type: "int", nullable: false)
+                    PostID = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.ID);
                     table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Comments_Posts_PostID",
                         column: x => x.PostID,
+                        principalTable: "Posts",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Likes",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    userId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    postID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Likes", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Likes_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Likes_Posts_postID",
+                        column: x => x.postID,
                         principalTable: "Posts",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -235,7 +273,7 @@ namespace AppDotNet.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "superviseur", 0, "ea52a8a6-4dff-4bee-9d56-f18b3c8669e2", "superviseur@gmail.com", true, false, null, null, "JOHN_SUPERVISEUR", "AQAAAAEAACcQAAAAEGhDBBlV4o0OdcftT3sizGwAcuVZ7+TUOfCRQNnsaBamd+lP7Pr3sSOzLD4nF70JtQ==", null, false, "75703cf4-12ac-417a-80a9-b2332e1c363a", false, "john superviseur" });
+                values: new object[] { "superviseur", 0, "e713dba8-1958-49e2-aab0-4821f0e60764", "superviseur@gmail.com", true, false, null, null, "JOHN_SUPERVISEUR", "AQAAAAEAACcQAAAAECw2W9AxgZLEQicI/lqSWmjBeUBGtKJKWI5CtfM75KM/t/VdPEJ1WKjCKPSwjd7GLw==", null, false, "96708637-12bc-40bb-bc12-293c95810d5e", false, "john superviseur" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -292,9 +330,29 @@ namespace AppDotNet.Migrations
                 column: "PostID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Likes_postID",
+                table: "Likes",
+                column: "postID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Likes_userId",
+                table: "Likes",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Posts_BlogID",
                 table: "Posts",
                 column: "BlogID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_UserId",
+                table: "Posts",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -317,6 +375,9 @@ namespace AppDotNet.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "Likes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

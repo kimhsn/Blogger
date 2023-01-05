@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppDotNet.Migrations
 {
     [DbContext(typeof(AppDotNetContext))]
-    [Migration("20221223001914_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230101172414_initial_migration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,11 +71,39 @@ namespace AppDotNet.Migrations
                     b.Property<int>("PostID")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
 
                     b.HasIndex("PostID");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Likes", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("postID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("postID");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("AppDotNet.Entities.Post", b =>
@@ -86,7 +114,7 @@ namespace AppDotNet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("BlogID")
+                    b.Property<int>("BlogID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedTimestamp")
@@ -103,9 +131,14 @@ namespace AppDotNet.Migrations
                     b.Property<int>("NbLikes")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
 
                     b.HasIndex("BlogID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -179,14 +212,14 @@ namespace AppDotNet.Migrations
                         {
                             Id = "superviseur",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ea52a8a6-4dff-4bee-9d56-f18b3c8669e2",
+                            ConcurrencyStamp = "e713dba8-1958-49e2-aab0-4821f0e60764",
                             Email = "superviseur@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "JOHN_SUPERVISEUR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGhDBBlV4o0OdcftT3sizGwAcuVZ7+TUOfCRQNnsaBamd+lP7Pr3sSOzLD4nF70JtQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECw2W9AxgZLEQicI/lqSWmjBeUBGtKJKWI5CtfM75KM/t/VdPEJ1WKjCKPSwjd7GLw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "75703cf4-12ac-417a-80a9-b2332e1c363a",
+                            SecurityStamp = "96708637-12bc-40bb-bc12-293c95810d5e",
                             TwoFactorEnabled = false,
                             UserName = "john superviseur"
                         });
@@ -376,14 +409,47 @@ namespace AppDotNet.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AppDotNet.Entities.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Likes", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.Post", "post")
+                        .WithMany("Likes")
+                        .HasForeignKey("postID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppDotNet.Entities.User", "user")
+                        .WithMany("Likes")
+                        .HasForeignKey("userId");
+
+                    b.Navigation("post");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("AppDotNet.Entities.Post", b =>
                 {
-                    b.HasOne("AppDotNet.Entities.Blog", null)
+                    b.HasOne("AppDotNet.Entities.Blog", "Blog")
                         .WithMany("Posts")
-                        .HasForeignKey("BlogID");
+                        .HasForeignKey("BlogID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppDotNet.Entities.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -445,11 +511,19 @@ namespace AppDotNet.Migrations
             modelBuilder.Entity("AppDotNet.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("AppDotNet.Entities.User", b =>
                 {
                     b.Navigation("Blogs");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("Likes");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

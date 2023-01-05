@@ -13,7 +13,8 @@ var connectionString = builder.Configuration.GetConnectionString("AppDotNetConte
 builder.Services.AddDbContext<AppDotNetContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDotNetContext>();
 
 
@@ -23,6 +24,7 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+app.UsePathBase("/app");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -32,6 +34,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -39,7 +43,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
 app.UseHttpsRedirection();
-app.UseAuthorization();
 app.MapControllers();
+
+
 
 app.Run();

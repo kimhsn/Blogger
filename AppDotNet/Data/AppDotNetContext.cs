@@ -16,6 +16,7 @@ public class AppDotNetContext : IdentityDbContext<User>
 {
     public AppDotNetContext(DbContextOptions<AppDotNetContext> options)
         : base(options)
+
     {
     }
 
@@ -23,6 +24,12 @@ public class AppDotNetContext : IdentityDbContext<User>
 	public DbSet<Post> Posts { get; set; }
 	public DbSet<Comment> Comments { get; set; }
     public DbSet<User> Users { get; set; }
+
+    public DbSet<Likes> Likes { get; set; }
+
+
+
+
 
     //public string DbPath { get; }
     /*public BlogContext()
