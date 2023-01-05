@@ -47,6 +47,8 @@ $(document).on('click', '.not_liked .fa-thumbs-up', function () {
 		url: `/posts/${idPost}/like`,
 		success: function (response) {
 			$(`#post-${idPost}`).text(response);
+			$(`#post-${idPost}`).parent().closest('div').removeClass('not_liked');
+			$(`#post-${idPost}`).parent().closest('div').addClass('already_liked');
 		},
 		failure: function (response) {
 			alert(response.responseText);
@@ -70,7 +72,6 @@ $(function () {
 			success: function (response) {
 				document.getElementById("select-admins").innerHTML = "";
 				response.forEach((admin) => {
-					//var option = `<option value="${admin.id}">${admin.userName}</option>`;
 					let element = document.createElement("option");
 					element.setAttribute("value", admin.id)
 					element.innerHTML = admin.userName;
@@ -95,9 +96,8 @@ $(function () {
 			type: "POST",
 			url: url,
 			success: function (response) {
-				//document.location.reload();
-				//console.log(response);
-				console.log(response);
+				document.location.reload();
+			
 			},
 			failure: function (response) {
 				alert(response.responseText);
@@ -153,17 +153,29 @@ $(document).ready(function () {
 						document.querySelectorAll(".interaction").forEach(e => {
 							if (!blogs.includes(parseInt(e.id))) {
 								e.remove();
+							} else {
+								$(e).css('display', 'flex');
+								$(e).children().eq(0).remove();
+								$(e).children().eq(1).remove();
 							}
-
 						});
 					}
-
+				});
+				document.querySelectorAll(".remove_post_btn i").forEach(e => {
+					e.remove();
 				});
 
 			} else if (response[0].roleId == "id_utilisateur") {
 				document.querySelectorAll(".interaction").forEach(e => {
 					e.remove();
 				});
+				document.querySelectorAll(".remove_post_btn i").forEach(e => {
+					e.remove();
+				});
+			} else if ((response[0].roleId == "id_superviseur")) {
+				$("#add_blog_btn").css('display', 'flex');
+				$(".interaction").css('display', 'flex');
+				$(".remove_post_btn i").css('display', 'flex');
 			}
 		},
 		failure: function (response) {
@@ -173,11 +185,6 @@ $(document).ready(function () {
 			alert(response.responseText);
 		}
 	});
-
-
-
-	//like
-	
 
 });
 

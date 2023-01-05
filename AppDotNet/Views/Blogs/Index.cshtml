@@ -1,10 +1,21 @@
-﻿@model IEnumerable<AppDotNet.Entities.Blog>
+﻿@using AppDotNet.Entities;
+@using Microsoft.AspNetCore.Identity;
+@using AppDotNet.Data;
+
+@inject UserManager<User> UserManager
+
+@model IEnumerable<AppDotNet.Models.BlogModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <div class="container cards mt-5 mb-5">
+    @{
+      if(User.IsInRole("id_admin"))
+    {
+     <p>  hi admin </p>
+    }}
     <div class="row row-custum ">
     @foreach (var item in Model) {
         
@@ -17,6 +28,7 @@
                         <h5 class="card-title mt-2" onclick=""> @Html.DisplayFor(modelItem => item.Name)</h5>
                     </a>
                     <span class="card-title  mb-2">crée le @Html.DisplayFor(modelItem => item.CreatedTimestamp)</span>
+                    <span>Administré Par :  @Html.DisplayFor(modelItem => item.AdminEmail)</span>
                     @{
                         if (item.Prive)
                         {
@@ -60,11 +72,14 @@
 </div>
 </div>
 
-
-<div class="add-post" onclick="document.querySelector('#modalLoginAvatar').classList.toggle('show-pop-up')">
-    <i class="fa-solid fa-plus text-primary"></i>
-
-</div>
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        <div class="add-post" id="add_blog_btn" onclick="document.querySelector('#modalLoginAvatar').classList.toggle('show-pop-up')">
+            <i class="fa-solid fa-plus text-primary"></i>
+        </div>
+    }
+}
 
 <!--Ajouter-->
 
@@ -76,7 +91,7 @@
 
       <!--Header-->
       <div class="modal-header ">
-        <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-xmark close-add"></i>
         <img src="../images/blog.jpg" alt="avatar" class="rounded-circle img-responsive">
       </div>
       <!--Body-->
@@ -200,6 +215,11 @@
     document.querySelector(".close-assignate").addEventListener('click', () => {
 
         document.querySelector("#modalAssignate").classList.toggle("show-pop-up");
+    });
+
+    document.querySelector(".close-add").addEventListener('click', () => {
+
+        document.querySelector("#modalLoginAvatar").classList.toggle("show-pop-up");
     });
 
 

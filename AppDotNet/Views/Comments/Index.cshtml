@@ -5,6 +5,7 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/comments.css" asp-append-version="true" />
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
 
 @{
     if (Model != null)
@@ -47,7 +48,7 @@
                                             User.Identity.Name
                                             )</span></div>
                                         </div>
-                                        <span class="text1">@Html.DisplayFor(modelItem => item.Description)</span>
+                                        <span class="text1">@Html.Raw(item.Description)</span>
 
                                     </div>
                                 </div>
@@ -58,9 +59,10 @@
                                     <div class="d-flex justify-content-center pt-3 pb-2">
                                         <form asp-controller="Comments" action="/comments/create" method="post" class="add-comment-form">
                                             @Html.AntiForgeryToken()
-                                            <input type="search" name="Description" placeholder="+ Ajouter un commentaire" class="form-control addtxt">
-                                            <button type="submit" class="btn-comment">ajouter</button>
+                                            <input type="search" name="Description"  id="description_comment" placeholder="+ Ajouter un commentaire" class="form-control addtxt">
+                                            <div id="example" ></div>                                           
                                             <input name="post" type="text"  class="add_comment_hidden"></input>
+                                            <button id="add_coment_submit" class="btn btn-primary mt-1 ">Ajouter </button>
                                         </form>
                                     </div>
                                 }
@@ -80,11 +82,23 @@
         </div>
     }
 }
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 
 <script>
+    let inputDescription = document.querySelector("#description_comment");
+    var editor = new FroalaEditor('#example',{
+      events: {
+        'charCounter.update': function () {
+                inputDescription.value = this.el.innerHTML;//innerHTML
+        }
+      }
+    });
 
     document.querySelectorAll(".add_comment_hidden").forEach(function (element) {
         element.value = localStorage.getItem('selected_post');
     });
+       
+    
 
 </script>
+

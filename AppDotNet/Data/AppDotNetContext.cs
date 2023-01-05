@@ -16,6 +16,7 @@ public class AppDotNetContext : IdentityDbContext<User>
 {
     public AppDotNetContext(DbContextOptions<AppDotNetContext> options)
         : base(options)
+
     {
     }
 

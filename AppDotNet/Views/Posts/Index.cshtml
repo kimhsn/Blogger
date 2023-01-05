@@ -7,10 +7,10 @@
     var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier); //@UserId     
 
 }
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+
 
 <div class="container">
-
-
 @foreach (var item in Model) {
     
         <div class="col-md-5 post">
@@ -54,7 +54,7 @@
                     </div>
                 </section>
                 <section class="post-body">
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.Raw(item.Description)
 
                 </section>
                 <section class="post-footer">
@@ -97,9 +97,15 @@
         </div>
     </div>
 }
-<div class="add-post" onclick="document.querySelector('#modalLoginAvatar').classList.toggle('show-pop-up');document.querySelector('#add_blog_hidden').value=localStorage.getItem('blog_selected')">
-    <i class="fa-solid fa-plus"></i>
-</div>
+ 
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+    <div class="add-post" onclick="document.querySelector('#addPost').classList.toggle('show-pop-up');document.querySelector('#add_blog_hidden').value=localStorage.getItem('blog_selected')">
+        <i class="fa-solid fa-plus"></i>
+    </div>
+    }
+ }
 
 </div>
 
@@ -107,7 +113,7 @@
 
 <!--Ajouter-->
 
-<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="addPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog center-all cascading-modal modal-avatar modal-sm add-post-modal" role="document">
         <!--Content-->
@@ -115,32 +121,30 @@
 
             <!--Header-->
             <div class="modal-header ">
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-xmark close-add-post"></i>
                 <img src="../../images/post.PNG" alt="avatar" class="rounded-circle img-responsive post-img">
             </div>
             <!--Body-->
             <div class="modal-body text-center mb-1">
-
-                <h5 class="mt-1 mb-2">Ajouter un Post</h5>
                 <form action="/posts/create" method="post">
                         @Html.AntiForgeryToken()
 
                     <div class="md-form ml-0 mr-0">
                         <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">Nom du Post</label>
                         <input type="text" type="text" name="Name" class="form-control form-control-sm validate ml-0">
+                        <input name="blog" type="text" id="add_blog_hidden"></input>
 
                     </div>
                     <div class="md-form md-form mt-3 mr-0">
                         <label data-error="wrong" data-success="right" class="ml-0">Description</label>
-                        <textarea rows="5" cols="50" name="Description"></textarea>
+                        <textarea rows="5" cols="50" name="Description" id="description_post"></textarea>
+                        <div id="example2"></div>
+
                     </div>
-                    
-                    <input name="blog"  type="text" id="add_blog_hidden"></input>
                     <div class="text-center mt-2">
                         <button type="submit" class="btn btn-primary mt-1 ">Ajouter </button>
                     </div>
                 </form>
-
             </div>
 
         </div>
@@ -148,14 +152,33 @@
     </div>
 </div>
 
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 
 <script>
+     
+    let inputDescriptionPost = document.querySelector("#description_post");
+    var editor2 = new FroalaEditor('#example2', {
+        events: {
+            'charCounter.update': function () {
+                inputDescriptionPost.value = this.el.innerHTML;//innerHTML
+            }
+        }
+    });
 
-    // js selectors
+    //pop up selectors
     document.querySelectorAll(".remove_blog_hidden").forEach(function (element) {
-        // element refers to the DOM node
         element.value = localStorage.getItem('blog_selected');
 
+    });
+
+    document.querySelector(".close-add-post").addEventListener('click', () => {
+
+        document.querySelector("#addPost").classList.toggle("show-pop-up");
+    });
+
+    document.querySelector(".close-assignate").addEventListener('click', () => {
+
+        document.querySelector("#addPost").classList.toggle("show-pop-up");
     });
 
     document.querySelector(".close-modifier").addEventListener('click', () => {
@@ -163,11 +186,8 @@
         document.querySelector("#modifierBlog").classList.toggle("show-pop-up");
     });
 
-    document.querySelector(".close-assignate").addEventListener('click', () => {
-
-        document.querySelector("#modalAssignate").classList.toggle("show-pop-up");
-    });
-
+   // let inputDescription = document.querySelector("#description_post");
+   
 
 
 
