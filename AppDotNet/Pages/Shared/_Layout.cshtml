@@ -26,7 +26,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-md-auto gap-2">
-                    <i class="fa-solid fa-earth-africa"></i>
+                    <div class="languages">
+                         <i class="fa-solid fa-earth-africa"></i>
+                         <div class="flags">
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
+                                <img src="/images/great-britain.png" class="en_flag" />
+
+                            </a>
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
+
+                                <img src="/images/france.png" class="fr_flag" />
+                            </a>
+                         </div>
+                    </div>
                    
                     @{
                         if (User.Identity.IsAuthenticated)
@@ -48,7 +60,7 @@
                         else
                         {
                             <li class="nav-item rounded">
-                                <a class="nav-link active" aria-current="page" asp-area="Identity" asp-page="/Account/Login">Se Connecter</a>
+                                <a class="nav-link active" aria-current="page" asp-area="Identity" asp-page="/Account/Login">@language.Getkey("LogIn")</a>
                             </li>
 
                         }
@@ -58,17 +70,7 @@
                 </ul>
             </div>
         </div>
-        <div class="flags">
-           <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
-                <img src="../images/great-britain.png"  class="en_flag"/>
-
-            </a>
-            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
-
-                <img src="../images/france.png" class="fr_flag" />
-            </a>
-
-        </div>
+       
        
     </nav>
    
@@ -88,9 +90,20 @@
 
     // js selectors
 
-        document.querySelector(".fa-earth-africa").addEventListener('click', () => {
+    document.querySelector(".fa-earth-africa").addEventListener('click', () => {
 
             document.querySelector(".flags").classList.toggle("flags_show");
+    });
+
+    document.querySelector(".en_flag").addEventListener('click', () => {
+
+        localStorage.setItem('lang','en')
+
+    });
+
+    document.querySelector(".fr_flag").addEventListener('click', () => {
+
+        localStorage.setItem('lang', 'fr');
     });
 
 

@@ -135,6 +135,9 @@
   <data name="AssignAdmin" xml:space="preserve">
     <value>Assigner à un admin</value>
   </data>
+  <data name="Bio" xml:space="preserve">
+    <value>Notre blog a été créé afin de d'échanger des blogs et des posts entre différents utilisateurs, un événement s’est passé dans ta journée, partage ça avec tes amis en faisant un poste et tes amis te feront des commentaires, Allez, rejoins-nous, Inscris-toi !</value>
+  </data>
   <data name="BlogName" xml:space="preserve">
     <value>Nom du blog : </value>
   </data>
@@ -144,6 +147,9 @@
   <data name="ceatedAt" xml:space="preserve">
     <value>Crée le : </value>
   </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Se Connecter</value>
+  </data>
   <data name="PostName" xml:space="preserve">
     <value>Nom du post</value>
   </data>
@@ -152,5 +158,11 @@
   </data>
   <data name="UpdateBlog" xml:space="preserve">
     <value>Modifier un blog</value>
+  </data>
+  <data name="VisitUs" xml:space="preserve">
+    <value>Visiter nos blogs !</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Soyez les bienvenus</value>
   </data>
 </root>

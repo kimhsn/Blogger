@@ -3,22 +3,24 @@
 @{
     ViewData["Title"] = "Home page";
 }
+
+@using AppDotNet.Models;
+@inject LanguageService language
+
 <link href='../css/styleHome.css' rel='stylesheet' type='text/css' />
 
 <div class="container-fluid container-fluid-update px-0 px-md-5 mb-5">
       <div class="row align-items-center px-3">
         <div class="col-lg-6 text-center text-lg-left">
-           <h4 class="text-white mb-4 mt-5 mt-lg-0">Soyez les bienvenusr</h4>
+            <h4 class="text-white mb-4 mt-5 mt-lg-0">@language.Getkey("Welcome")</h4>
           <h1 class="display-3 font-weight-bold text-white">
             Bloger
           </h1>
           <p class="text-white mb-4">
-            Sea ipsum kasd eirmod kasd magna, est sea et diam ipsum est amet sed
-            sit. Ipsum dolor no justo dolor et, lorem ut dolor erat dolore sed
-            ipsum at ipsum nonumy amet. Clita lorem dolore sed stet et est justo
-            dolore.
-          </p>
-          <a href="/blogs" class="btn btn-secondary mt-1 py-3 px-5">Visiter nos blogs !</a>
+                @language.Getkey("Bio")
+
+            </p>
+            <a href="/blogs" class="btn btn-secondary mt-1 py-3 px-5">@language.Getkey("VisitUs")</a>
         </div>
         <div class="col-lg-6 text-center text-lg-right">
           <img class="img-fluid mt-5" src="../images/blog_back.png" alt="">

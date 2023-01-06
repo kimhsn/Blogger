@@ -128,13 +128,15 @@
   </data>
   <data name="Admin" xml:space="preserve">
     <value>Administrated by : </value>
-    <comment>  </comment>
   </data>
   <data name="Assign" xml:space="preserve">
     <value>Assign</value>
   </data>
   <data name="AssignAdmin" xml:space="preserve">
     <value>Assign to admin</value>
+  </data>
+  <data name="Bio" xml:space="preserve">
+    <value>Our blog was created to exchange blogs and posts between different users, an event happened in your day, share it with your friends by making a post and your friends will make you comments, Come on, join us, Register!</value>
   </data>
   <data name="BlogName" xml:space="preserve">
     <value>Blog name : </value>
@@ -145,6 +147,9 @@
   <data name="ceatedAt" xml:space="preserve">
     <value>Created at : </value>
   </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>LogIn</value>
+  </data>
   <data name="PostName" xml:space="preserve">
     <value>Post Name </value>
   </data>
@@ -153,5 +158,11 @@
   </data>
   <data name="UpdateBlog" xml:space="preserve">
     <value>Update blog</value>
+  </data>
+  <data name="VisitUs" xml:space="preserve">
+    <value>Visit our blogs !</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>

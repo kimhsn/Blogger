@@ -36,6 +36,19 @@ $(function () {
 });
 
 
+//for all pages
+
+if (localStorage.getItem('lang') == "en") {
+	document.querySelector(".en_flag").classList.add('show_flag');
+	document.querySelector(".fr_flag").classList.remove('show_flag');
+} else {
+	document.querySelector(".en_flag").classList.remove('show_flag');
+	document.querySelector(".fr_flag").classList.add('show_flag');
+}
+
+
+////
+
 
 $(document).on('click', '.not_liked .fa-thumbs-up', function () {
 	
@@ -110,11 +123,12 @@ $(function () {
 
 	$(".fa-pen-to-square").click(function () {
 		let idBlog = localStorage.getItem('blog_id');
-
+		
 		$.ajax({
 			type: "GET",
 			url: `/blogs/details/${idBlog}`,
 			success: function (response) {
+				console.log(response);
 				$("#nom_modifier").val(response.name);
 				$("#prive_modifier").prop('checked', response.prive);
 				$("#form_modifier").attr("action", `/blogs/edit/${response.id}`);
@@ -161,21 +175,26 @@ $(document).ready(function () {
 						});
 					}
 				});
-				document.querySelectorAll(".remove_post_btn i").forEach(e => {
+				/*document.querySelectorAll(".remove_post_btn i").forEach(e => {
 					e.remove();
-				});
+				});*/
+				$("#navbarDropdown").append(" (Admin)");
 
 			} else if (response[0].roleId == "id_utilisateur") {
 				document.querySelectorAll(".interaction").forEach(e => {
 					e.remove();
 				});
-				document.querySelectorAll(".remove_post_btn i").forEach(e => {
+				/*document.querySelectorAll(".remove_post_btn i").forEach(e => {
 					e.remove();
-				});
+				});*/
+				$("#navbarDropdown").append(" (Utilisateur)");
+
 			} else if ((response[0].roleId == "id_superviseur")) {
 				$("#add_blog_btn").css('display', 'flex');
 				$(".interaction").css('display', 'flex');
-				$(".remove_post_btn i").css('display', 'flex');
+				//$(".remove_post_btn i").css('display', 'flex');
+				$("#navbarDropdown").append(" (Superviseur)");
+
 			}
 		},
 		failure: function (response) {

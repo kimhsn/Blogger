@@ -21,7 +21,7 @@
             <div class="panel panel-default">
             <div class="panel-body">
                     @{
-                        if (User.Identity.IsAuthenticated)
+                        if (User.Identity.IsAuthenticated && item.BelongToMe)
                         {
                            
                             <div class="remove_post_form" id="@Html.DisplayFor(modelItem => item.ID)">
@@ -34,9 +34,7 @@
                                     <input name="blog" type="text" class="remove_blog_hidden"></input>
                                 </form>
                             </div>
-                            
-                           
-                    }
+                        }
                 }
                 <section class="post-heading">
                     <div class="row">

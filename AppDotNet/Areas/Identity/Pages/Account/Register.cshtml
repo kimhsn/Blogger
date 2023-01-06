@@ -20,15 +20,15 @@
 			<form id="registerForm" class="form-signin"  asp-route-returnUrl="@Model.ReturnUrl" method="post">
                
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<label asp-for="Input.Email"></label>
+					<label asp-for="Input.Email">EMAIL</label>
 					<input asp-for="Input.Email" class="form-styling" autocomplete="username" aria-required="true" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
 
-					<label asp-for="Input.Password"></label>
+					<label asp-for="Input.Password">MOT DE PASSE</label>
 					<input asp-for="Input.Password" class="form-styling" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
 
-					<label asp-for="Input.ConfirmPassword"></label>
+					<label asp-for="Input.ConfirmPassword">CONFIRMATION DU MOT DE PASSE </label>
 					<input asp-for="Input.ConfirmPassword" class="form-styling" autocomplete="new-password" aria-required="true" />
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 
@@ -40,7 +40,7 @@
 						<option value="id_superviseur">Superviseur</option>
 					</select>
 
-				<button id="registerSubmit" type="submit" class="btn-animate">Register</button>
+				<button id="registerSubmit" type="submit" class="btn-animate">S'inscrire</button>
             </form>
 			
 		</div>

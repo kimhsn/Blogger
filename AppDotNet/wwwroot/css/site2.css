@@ -224,22 +224,29 @@ position:relative;
 .flags {
     background: #f5f5f5;
     padding: .2rem;
-    right: 0;
-    left: unset;
     text-align: center;
     min-width: 4rem;
     position: absolute;
-    top: 50px;
-    right: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index:1;
-    display:none;
+    z-index: 1;
+    display: none;
+    right: 10px;
 }
+
+.languages {
+    position: relative;    
+}
+
 .flags_show {
     display: flex;
+}
+
+
+.show_flag {
+    filter: none !important;
 }
 
 .flags img {
@@ -255,6 +262,7 @@ nav .fa-earth-africa {
     transform: scale(1.16);
     margin-right: 16px;
     margin-top: 13px;
+    cursor:pointer;
 }
 a {
     color: #47649F;
@@ -397,12 +405,12 @@ body {
 
 .add-post-modal {
     position: absolute;
-    top: 0% !important;
-    left: 16% !important;
+    top: 5% !important;
+    left: 20% !important;
     width: 75% !important;
     transform: none !important;
     max-width: 800px !important;
-    max-height:400px !important;
+    max-height: 400px !important;
 }
 .not_liked i {
     color: #a9a9a9;
@@ -428,7 +436,7 @@ body {
     margin-bottom:10px;
 }
 .remove_post_btn i {
-    display: none;
+    display: flex;
 }
 #description_post {
     display:none;
@@ -436,8 +444,8 @@ body {
 
 .card-block .fa-earth-africa, .fa-lock {
     position: absolute;
-    left: 21px;
-    bottom: 19px;
+    left: 18px;
+    bottom: 14px;
 }
 .card-block .fa-earth-africa {
    color: #007dab !important;

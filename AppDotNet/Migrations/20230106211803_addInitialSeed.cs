@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AppDotNet.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class addInitialSeed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -273,12 +273,49 @@ namespace AppDotNet.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "superviseur", 0, "e713dba8-1958-49e2-aab0-4821f0e60764", "superviseur@gmail.com", true, false, null, null, "JOHN_SUPERVISEUR", "AQAAAAEAACcQAAAAECw2W9AxgZLEQicI/lqSWmjBeUBGtKJKWI5CtfM75KM/t/VdPEJ1WKjCKPSwjd7GLw==", null, false, "96708637-12bc-40bb-bc12-293c95810d5e", false, "john superviseur" });
+                values: new object[,]
+                {
+                    { "admin", 0, "e792129d-4cde-4880-a07d-16756a33a6ae", "admin@gmail.com", true, false, null, null, "JOHN_ADMIN", "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==", null, false, "0f3ff21c-9944-489d-815e-d2c1aeca72be", false, "john admin" },
+                    { "superviseur", 0, "8f196d68-b485-43df-b899-edb2787dd840", "superviseur@gmail.com", true, false, null, null, "JOHN_SUPERVISEUR", "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==", null, false, "c8161dcf-d527-4f0d-a4d4-da59439854e0", false, "john superviseur" },
+                    { "user", 0, "50a4a960-41f1-4973-a2c6-7206936013b1", "user@gmail.com", true, false, null, null, "JOHN_USER", "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==", null, false, "2a98a18c-fb7f-4fcf-ac1d-3aae078398ab", false, "john user" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Blogs",
+                columns: new[] { "ID", "AdminId", "CreatedTimestamp", "Name", "Prive" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(304), "Ma vie en temps de crise", false },
+                    { 2, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(372), "Les aventures de …", true },
+                    { 3, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(381), "qualité produit", false },
+                    { 4, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(390), "Je grandis avec vous", true },
+                    { 5, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(438), "multimedia créatif", false },
+                    { 6, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(451), "Temoignage d’experts", true },
+                    { 7, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(460), "smartphone avis", false },
+                    { 8, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(468), "techno simple", true },
+                    { 9, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(476), "Parlez vous le blog ?", false },
+                    { 10, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(486), "Ultra Blog", true },
+                    { 11, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(494), "Influence toi", false },
+                    { 12, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(503), "Mon microblog", true },
+                    { 13, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(511), "Vlogy", false },
+                    { 14, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(519), "Vlog expert", true },
+                    { 15, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(528), "Perfection blog", false },
+                    { 16, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(536), "Blog Towns", true },
+                    { 17, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(544), "Blog Country", false },
+                    { 18, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(554), "Blog It", true },
+                    { 19, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(563), "WeBlog", false },
+                    { 20, null, new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(571), "NetBlog", true }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "id_superviseur", "superviseur" });
+                values: new object[,]
+                {
+                    { "id_admin_blog", "admin" },
+                    { "id_superviseur", "superviseur" },
+                    { "id_utilisateur", "user" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

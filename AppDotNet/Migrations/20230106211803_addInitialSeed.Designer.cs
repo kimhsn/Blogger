@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppDotNet.Migrations
 {
     [DbContext(typeof(AppDotNetContext))]
-    [Migration("20230101172414_initial_migration")]
-    partial class initialmigration
+    [Migration("20230106211803_addInitialSeed")]
+    partial class addInitialSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,148 @@ namespace AppDotNet.Migrations
                     b.HasIndex("AdminId");
 
                     b.ToTable("Blogs");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(304),
+                            Name = "Ma vie en temps de crise",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(372),
+                            Name = "Les aventures de …",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(381),
+                            Name = "qualité produit",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(390),
+                            Name = "Je grandis avec vous",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(438),
+                            Name = "multimedia créatif",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(451),
+                            Name = "Temoignage d’experts",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(460),
+                            Name = "smartphone avis",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(468),
+                            Name = "techno simple",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(476),
+                            Name = "Parlez vous le blog ?",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 10,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(486),
+                            Name = "Ultra Blog",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 11,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(494),
+                            Name = "Influence toi",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 12,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(503),
+                            Name = "Mon microblog",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 13,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(511),
+                            Name = "Vlogy",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 14,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(519),
+                            Name = "Vlog expert",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 15,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(528),
+                            Name = "Perfection blog",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 16,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(536),
+                            Name = "Blog Towns",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 17,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(544),
+                            Name = "Blog Country",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 18,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(554),
+                            Name = "Blog It",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 19,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(563),
+                            Name = "WeBlog",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 20,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(571),
+                            Name = "NetBlog",
+                            Prive = true
+                        });
                 });
 
             modelBuilder.Entity("AppDotNet.Entities.Comment", b =>
@@ -212,16 +354,46 @@ namespace AppDotNet.Migrations
                         {
                             Id = "superviseur",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e713dba8-1958-49e2-aab0-4821f0e60764",
+                            ConcurrencyStamp = "8f196d68-b485-43df-b899-edb2787dd840",
                             Email = "superviseur@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "JOHN_SUPERVISEUR",
-                            PasswordHash = "AQAAAAEAACcQAAAAECw2W9AxgZLEQicI/lqSWmjBeUBGtKJKWI5CtfM75KM/t/VdPEJ1WKjCKPSwjd7GLw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "96708637-12bc-40bb-bc12-293c95810d5e",
+                            SecurityStamp = "c8161dcf-d527-4f0d-a4d4-da59439854e0",
                             TwoFactorEnabled = false,
                             UserName = "john superviseur"
+                        },
+                        new
+                        {
+                            Id = "admin",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e792129d-4cde-4880-a07d-16756a33a6ae",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "JOHN_ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0f3ff21c-9944-489d-815e-d2c1aeca72be",
+                            TwoFactorEnabled = false,
+                            UserName = "john admin"
+                        },
+                        new
+                        {
+                            Id = "user",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "50a4a960-41f1-4973-a2c6-7206936013b1",
+                            Email = "user@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "JOHN_USER",
+                            PasswordHash = "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2a98a18c-fb7f-4fcf-ac1d-3aae078398ab",
+                            TwoFactorEnabled = false,
+                            UserName = "john user"
                         });
                 });
 
@@ -368,6 +540,16 @@ namespace AppDotNet.Migrations
                         {
                             UserId = "superviseur",
                             RoleId = "id_superviseur"
+                        },
+                        new
+                        {
+                            UserId = "admin",
+                            RoleId = "id_admin_blog"
+                        },
+                        new
+                        {
+                            UserId = "user",
+                            RoleId = "id_utilisateur"
                         });
                 });
 
