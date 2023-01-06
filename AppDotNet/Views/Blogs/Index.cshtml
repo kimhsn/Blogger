@@ -1,6 +1,7 @@
 ﻿@using AppDotNet.Entities;
 @using Microsoft.AspNetCore.Identity;
 @using AppDotNet.Data;
+@using AppDotNet.Models;
 
 @inject UserManager<User> UserManager
 
@@ -9,6 +10,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+@inject LanguageService language
 
 <div class="container cards mt-5 mb-5">
     @{
@@ -22,13 +24,13 @@
 
         <div class="col-md-3 col-sm-6 card-custum">
             <div class="card card-block">
-                <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+                    <img src="../images/creer-un-blog-removebg-preview.png" alt="Photo of sunset">
 
                     <a onclick="localStorage.setItem('blog_selected', @Html.DisplayFor(modelItem => item.ID))" href="/blogs/@Html.DisplayFor(modelItem => item.ID)/posts">
                         <h5 class="card-title mt-2" onclick=""> @Html.DisplayFor(modelItem => item.Name)</h5>
                     </a>
-                    <span class="card-title  mb-2">crée le @Html.DisplayFor(modelItem => item.CreatedTimestamp)</span>
-                    <span>Administré Par :  @Html.DisplayFor(modelItem => item.AdminEmail)</span>
+                    <span class="card-title  mb-2">@language.Getkey("ceatedAt") @Html.DisplayFor(modelItem => item.CreatedTimestamp)</span>
+                    <span class="admin_by">@language.Getkey("Admin")  @Html.DisplayFor(modelItem => item.AdminEmail)</span>
                     @{
                         if (item.Prive)
                         {
@@ -97,23 +99,23 @@
       <!--Body-->
       <div class="modal-body text-center mb-1">
 
-        <h5 class="mt-1 mb-2">Ajouter un blog</h5>
+                <h5 class="mt-1 mb-2">@language.Getkey("AddBlog")</h5>
                 <form asp-action="Create" action="/blogs/create" method="post">
                     @Html.AntiForgeryToken()
 
                     <div class="md-form ml-0 mr-0">
-                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">Nom du blog</label>
+                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">@language.Getkey("BlogName")</label>
                         <input type="text" type="text" name="Name" class="form-control form-control-sm validate ml-0">
 
                     </div>
                     <div class="md-form md-form mt-3 mr-0">
-                        <label data-error="wrong" data-success="right" class="ml-0">Privé</label>
+                        <label data-error="wrong" data-success="right" class="ml-0">@language.Getkey("BlogPrivate")</label>
                         <input class="form-check-input"  type="checkbox" name="Prive" />
                     </div>
                    
 
                     <div class="text-center mt-2">
-                        <button type="submit" class="btn btn-primary mt-1 ">Ajouter </button>
+                        <button type="submit" class="btn btn-primary mt-1 ">@language.Getkey("Add") </button>
                     </div>
                 </form>
        
@@ -142,21 +144,21 @@
             <!--Body-->
             <div class="modal-body text-center mb-1">
 
-                <h5 class="mt-1 mb-2">Modifier un blog</h5>
+                <h5 class="mt-1 mb-2">@language.Getkey("UpdateBlog")</h5>
                 <form asp-action="Create" action="/blogs/edit" method="post" id="form_modifier">
                     @Html.AntiForgeryToken()
 
                     <div class="md-form ml-0 mr-0">
-                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">Nom du blog</label>
+                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">@language.Getkey("BlogName")</label>
                         <input type="text" id="nom_modifier" type="text" name="Name" class="form-control form-control-sm validate ml-0">
 
                     </div>
                     <div class="md-form md-form mt-3 mr-0">
-                        <label data-error="wrong" data-success="right" class="ml-0">Privé</label>
+                        <label data-error="wrong" data-success="right" class="ml-0">@language.Getkey("BlogPrivate")</label>
                         <input class="form-check-input" type="checkbox" name="Prive" />
                     </div>
                     <div class="text-center mt-2">
-                        <button type="submit" class="btn btn-primary mt-1 ">Modifier </button>
+                        <button type="submit" class="btn btn-primary mt-1 ">@language.Getkey("Update") </button>
                     </div>
                 </form>
 
@@ -183,7 +185,7 @@
             <!--Body-->
             <div class="modal-body text-center mb-1">
 
-                <h5 class="mt-1 mb-2">Assigner à un admin</h5>
+                <h5 class="mt-1 mb-2">@language.Getkey("AssignAdmin")</h5>
               
                     <div class="md-form ml-0 mr-0">
                         <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2"></label>
@@ -192,7 +194,7 @@
                         </select>
                     </div>
                     <div class="text-center mt-2">
-                        <button id="assigner-btn" class="btn btn-primary mt-1 ">Assigner </button>
+                    <button id="assigner-btn" class="btn btn-primary mt-1 ">@language.Getkey("Assign") </button>
                     </div>
                 </form>
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1tJGfKXSISMUpqGHJcgftubXVLhC4aqbJTEH62s79lc=",
+  "Hash": "yj7E3/lP7/IaCU16VvYlwleM06LgfEmH0Q1IXZ30pMo=",
   "Source": "AppDotNet",
   "BasePath": "_content/AppDotNet",
   "Mode": "Default",
@@ -1205,6 +1205,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\blog2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blogs-logo.png",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/blogs-logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\blogs-logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\creer-un-blog-removebg-preview.png",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/creer-un-blog-removebg-preview.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\creer-un-blog-removebg-preview.png"
     },
     {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\france.png",

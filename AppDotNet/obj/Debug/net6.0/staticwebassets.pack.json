@@ -37,6 +37,14 @@
       "PackagePath": "staticwebassets\\images\\blog2.jpg"
     },
     {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blogs-logo.png",
+      "PackagePath": "staticwebassets\\images\\blogs-logo.png"
+    },
+    {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\creer-un-blog-removebg-preview.png",
+      "PackagePath": "staticwebassets\\images\\creer-un-blog-removebg-preview.png"
+    },
+    {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\france.png",
       "PackagePath": "staticwebassets\\images\\france.png"
     },

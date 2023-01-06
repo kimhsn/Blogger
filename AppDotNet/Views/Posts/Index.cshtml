@@ -1,4 +1,5 @@
 ﻿@using System.Security.Claims;
+@using AppDotNet.Models;
 @using AppDotNet.Data;
 @model IEnumerable<AppDotNet.Models.PostModel>
 @{
@@ -7,6 +8,9 @@
     var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier); //@UserId     
 
 }
+@inject LanguageService language
+
+
 <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
 
 
@@ -130,7 +134,7 @@
                         @Html.AntiForgeryToken()
 
                     <div class="md-form ml-0 mr-0">
-                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">Nom du Post</label>
+                        <label data-error="wrong" data-success="right" class="ml-0 mt-2 mb-2">@language.Getkey("PostName")</label>
                         <input type="text" type="text" name="Name" class="form-control form-control-sm validate ml-0">
                         <input name="blog" type="text" id="add_blog_hidden"></input>
 
@@ -142,7 +146,7 @@
 
                     </div>
                     <div class="text-center mt-2">
-                        <button type="submit" class="btn btn-primary mt-1 ">Ajouter </button>
+                        <button type="submit" class="btn btn-primary mt-1 ">@language.Getkey("Add") </button>
                     </div>
                 </form>
             </div>
