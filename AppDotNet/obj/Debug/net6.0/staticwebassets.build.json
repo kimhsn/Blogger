@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yj7E3/lP7/IaCU16VvYlwleM06LgfEmH0Q1IXZ30pMo=",
+  "Hash": "TEh64UGrDpk9g1z0DfvpFmiKX9W2oypSw/vDpjKpefo=",
   "Source": "AppDotNet",
   "BasePath": "_content/AppDotNet",
   "Mode": "Default",
@@ -1139,6 +1139,23 @@
       "OriginalItemSpec": "wwwroot\\css\\site2.css"
     },
     {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\styleHome.css",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "css/styleHome.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styleHome.css"
+    },
+    {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\favicon.ico",
       "SourceId": "AppDotNet",
       "SourceType": "Discovered",
@@ -1188,6 +1205,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\blog.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog_back.png",
+      "SourceId": "AppDotNet",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\",
+      "BasePath": "_content/AppDotNet",
+      "RelativePath": "images/blog_back.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\blog_back.png"
     },
     {
       "Identity": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog2.jpg",

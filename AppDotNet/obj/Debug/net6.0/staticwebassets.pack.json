@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\site2.css"
     },
     {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\css\\styleHome.css",
+      "PackagePath": "staticwebassets\\css\\styleHome.css"
+    },
+    {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -35,6 +39,10 @@
     {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog2.jpg",
       "PackagePath": "staticwebassets\\images\\blog2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blog_back.png",
+      "PackagePath": "staticwebassets\\images\\blog_back.png"
     },
     {
       "Id": "C:\\Users\\hichem\\Desktop\\.NetProject\\AppDotNet\\wwwroot\\images\\blogs-logo.png",

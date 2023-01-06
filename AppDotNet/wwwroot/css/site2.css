@@ -435,7 +435,9 @@ body {
 }
 
 .card-block .fa-earth-africa, .fa-lock {
-    margin-top: 42px !important;
+    position: absolute;
+    left: 21px;
+    bottom: 19px;
 }
 .card-block .fa-earth-africa {
    color: #007dab !important;
@@ -447,4 +449,18 @@ body {
 }
 .fa-lock {
     color: #007dab !important;
+}
+
+.container-fluid-update {
+    position: absolute;
+    top: 62px;
+    left: 0px;
+    height: 90.7vh;
+    display: flex;
+    background-color: #007dab !important;
+}
+
+.container-fluid-update .row img {
+    height: 420px;
+    /* width: 100%; */
 }
