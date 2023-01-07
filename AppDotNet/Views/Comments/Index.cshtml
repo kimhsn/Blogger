@@ -36,7 +36,6 @@
                             </div>
                         </section>
                         <section class="post-body">
-                            @Html.DisplayFor(modelItem =>  Model.FirstOrDefault().postDescription)
                         </section>
 
 
@@ -46,11 +45,13 @@
                                 <div class="d-flex justify-content-center py-2 ">
                                     <div class="second py-2 px-2 comment-item">
                                         <div class="d-flex justify-content-between py-1 pt-2">
-                                            <div><img src="../../images/userComments.png" width="18"><span class="text2">@(
-                                            User.Identity.Name
-                                            )</span></div>
+                                            <div><img src="../../images/userComments.png" width="18"><span class="text2">
+                                                    @(User.Identity.Name+ " ")
+                                                    @Html.DisplayFor(modelItem => item.CreatedTimestamp)
+                                                </span>
+                                            </div>
                                         </div>
-                                        <span class="text1">@Html.Raw(item.Description)</span>
+                                        <span class="text1"> @Html.Raw(item.Description)</span>
 
                                     </div>
                                 </div>

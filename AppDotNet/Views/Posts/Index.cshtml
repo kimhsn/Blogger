@@ -21,7 +21,7 @@
             <div class="panel panel-default">
             <div class="panel-body">
                     @{
-                        if (User.Identity.IsAuthenticated && item.BelongToMe)
+                        if (User.Identity.IsAuthenticated  && (item.BelongToMe || item.IamIsupervisor))
                         {
                            
                             <div class="remove_post_form" id="@Html.DisplayFor(modelItem => item.ID)">

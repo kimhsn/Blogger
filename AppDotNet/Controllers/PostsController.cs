@@ -21,6 +21,12 @@ namespace AppDotNet.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            var role = (from a in _context.UserRoles
+                        where a.UserId == UserId
+                        select a.RoleId).ToList();
+
+            var isSupervisor = role[0] == "id_superviseur";
 
             var post = await _context.Posts.Where(m => m.Blog.ID == id).Select(post => new PostModel()
             {
@@ -30,6 +36,7 @@ namespace AppDotNet.Controllers
                 NbLikes = post.NbLikes,
                 AlreadyLiked = _context.Likes.Any(u => u.post == post && u.user.Id == UserId),
                 BelongToMe = _context.Posts.Any(p => p.ID == post.ID && p.User.Id == UserId),
+                IamIsupervisor = isSupervisor
             }).ToListAsync();
 
             return View(post);

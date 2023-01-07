@@ -7,5 +7,7 @@ namespace AppDotNet.Models
         public bool AlreadyLiked { get; set; }
         public bool BelongToMe { get; set; }
 
+        public bool IamIsupervisor { get; set; }
+
     }
 }
