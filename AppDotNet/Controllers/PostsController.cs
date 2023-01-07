@@ -21,12 +21,16 @@ namespace AppDotNet.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
-            var role = (from a in _context.UserRoles
-                        where a.UserId == UserId
-                        select a.RoleId).ToList();
+            var isSupervisor = false;
+            if (User.Identity.IsAuthenticated)
+            {
 
-            var isSupervisor = role[0] == "id_superviseur";
+                var role = (from a in _context.UserRoles
+                            where a.UserId == UserId
+                            select a.RoleId).ToList();
+
+                isSupervisor = role[0] == "id_superviseur";
+            }
 
             var post = await _context.Posts.Where(m => m.Blog.ID == id).Select(post => new PostModel()
             {
