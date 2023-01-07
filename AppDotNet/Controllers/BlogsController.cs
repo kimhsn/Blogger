@@ -82,7 +82,7 @@ namespace AppDotNet.Controllers
 
 
                 var blogs = (from b in _context.Blogs
-                             join ur in _context.Users on b.Admin.Id equals "2f8b9ab3-ad7f-4f4c-9035-ac63965fde31"
+                             join ur in _context.Users on b.Admin.Id equals user.Id
                              select b.ID).Distinct().ToList();
                 
                 return Json(blogs);

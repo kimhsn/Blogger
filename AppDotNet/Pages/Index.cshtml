@@ -4,7 +4,32 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core"> Web apps with ASP.NET Core</a>.</p>
+@using AppDotNet.Models;
+@inject LanguageService language
+
+<link href='../css/styleHome.css' rel='stylesheet' type='text/css' />
+
+<div class="container-fluid container-fluid-update px-0 px-md-5 mb-5">
+      <div class="row align-items-center px-3">
+        <div class="col-lg-6 text-center text-lg-left">
+            <h4 class="text-white mb-4 mt-5 mt-lg-0">@language.Getkey("Welcome")</h4>
+          <h1 class="display-3 font-weight-bold text-white">
+            Bloger
+          </h1>
+          <p class="text-white mb-4">
+                @language.Getkey("Bio")
+
+            </p>
+            <a href="/blogs" class="btn btn-secondary mt-1 py-3 px-5">@language.Getkey("VisitUs")</a>
+        </div>
+        <div class="col-lg-6 text-center text-lg-right">
+          <img class="img-fluid mt-5" src="../images/blog_back.png" alt="">
+        </div>
+      </div>
 </div>
+
+<script>
+
+    //document.location.href = "/blogs";
+
+</script>

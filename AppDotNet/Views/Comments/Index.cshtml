@@ -1,9 +1,11 @@
-﻿@model IEnumerable<AppDotNet.Models.CommentModel>
-
+﻿@using AppDotNet.Models;
+@model IEnumerable<AppDotNet.Models.CommentModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+@inject LanguageService language
+
 <link rel="stylesheet" href="~/css/comments.css" asp-append-version="true" />
 <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
 
@@ -62,7 +64,7 @@
                                             <input type="search" name="Description"  id="description_comment" placeholder="+ Ajouter un commentaire" class="form-control addtxt">
                                             <div id="example" ></div>                                           
                                             <input name="post" type="text"  class="add_comment_hidden"></input>
-                                            <button id="add_coment_submit" class="btn btn-primary mt-1 ">Ajouter </button>
+                                            <button id="add_coment_submit" class="btn btn-primary mt-1 ">@language.Getkey("AddComment") </button>
                                         </form>
                                     </div>
                                 }

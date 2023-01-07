@@ -879,3 +879,10 @@ C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\scopedcss\project
 C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\AppDotNet.csproj.CopyComplete
 C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\AppDotNet.genruntimeconfig.cache
 C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\ref\AppDotNet.dll
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\AppDotNet.csproj.GenerateResource.cache
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\en-US\AppDotNet.resources.dll
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\bin\Debug\net6.0\fr-FR\AppDotNet.resources.dll
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\en-US\AppDotNet.resources.dll
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\fr-FR\AppDotNet.resources.dll
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\AppDotNet.Resources.SharedResource.en-US.resources
+C:\Users\hichem\Desktop\.NetProject\AppDotNet\obj\Debug\net6.0\AppDotNet.Resources.SharedResource.fr-FR.resources

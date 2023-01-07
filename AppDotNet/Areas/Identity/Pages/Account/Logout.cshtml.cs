@@ -29,7 +29,7 @@ namespace AppDotNet.Areas.Identity.Pages.Account
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
 
-			return Redirect("/Identity/Account/login");
+			return Redirect("/");
 
 			if (returnUrl != null)
             {

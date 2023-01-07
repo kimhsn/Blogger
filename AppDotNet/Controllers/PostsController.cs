@@ -28,8 +28,9 @@ namespace AppDotNet.Controllers
                 Description = post.Description,
                 Name = post.Name,
                 NbLikes = post.NbLikes,
-                AlreadyLiked = _context.Likes.Any(u => u.post == post && u.user.Id == UserId)
-             }).ToListAsync();
+                AlreadyLiked = _context.Likes.Any(u => u.post == post && u.user.Id == UserId),
+                BelongToMe = _context.Posts.Any(p => p.ID == post.ID && p.User.Id == UserId),
+            }).ToListAsync();
 
             return View(post);
           

@@ -18,19 +18,23 @@ body {
 }
 
 nav.bg-dark {
-    background-color: #0dcaf0 !important;
+    background-color: #007dab !important;
 }
 .navbar-brand {
-    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgZGF0YS1uYW1lPSJMYXllciAxIiBpZD0iTGF5ZXJfMSIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik01MDQuMzMsNDQ5Yy0xLjc3LTYuOC00NC43My0xNjcuNTItMTY0LjIxLTIzMi45MS00NC42NS0yNC40My05Ni4yLTQxLjQ1LTE0Ni01Ny45MUMxMTUsMTMyLjA4LDQwLjI5LDEwNy40MiwyNiw1OS42NWE2LjIyLDYuMjIsMCwwLDAtMTIsLjI0Yy0uOSwzLjUtMjEuNTMsODYuMzgsMTUuNjUsMTM3Ljk0LDE2LjgsMjMuMjksNDIuNjYsMzYuMzMsNzYuODUsMzguNzUsMi44OC4yLDUuNjEuNDIsOC40NC42Myw0LjE1LDE1LjE2LDIyLjE0LDYwLjYzLDg5LjYxLDY2LDEyLjI1LDEsMjQuMTcsMi4yNSwzNS45LDMuNjUsNC45MiwxNC4xNiwyNi44NCw1Ny42LDExNCw3My4wNyw2Mi43OCwxMS4xNCwxMTQsMzEuMTgsMTMxLjIxLDUxLjI1LDQuMzksMTIuNjgsNi41MywyMC42Miw2LjYzLDIxYTYuMiw2LjIsMCwwLDAsNiw0LjY1LDYuNTYsNi41NiwwLDAsMCwxLjU3LS4yQTYuMjMsNi4yMywwLDAsMCw1MDQuMzMsNDQ5Wk0zOS43NCwxOTAuNThDMTYsMTU3LjczLDE4Ljc1LDEwOC41MiwyMi41NSw4MS44M2MyNi4wNyw0MS40Myw5Mi4zNCw2My4zMSwxNjcuNjIsODguMTYsNDkuMzIsMTYuMjksMTAwLjMzLDMzLjEzLDE0NCw1NywzMS40NiwxNy4yMSw1Ny41Myw0MS44LDc4LjgsNjguNDRDMzcyLDI2OS4zOCwzMDUuNTgsMjM4LjIyLDEwNy4zNSwyMjQuMTgsNzcsMjIyLDU0LjI4LDIxMC43MywzOS43NCwxOTAuNThabTg4LjM2LDQ3LjY0YzIwMi4zOCwxNi40MiwyNTQuMzYsNTEuNDYsMjkyLjY0LDc3LjI4LDQuMzYsMi45NSw4LjU4LDUuOCwxMi44NCw4LjUxLDUuMDksNy43Nyw5LjgxLDE1LjU1LDE0LjE4LDIzLjIyLTM4LjM3LTE5Ljc4LTExNS42OS00MS40Mi0yMDEuMTktNTIuMTUtLjE0LDAtLjI5LDAtLjQ0LS4wNi0xMy4zOS0xLjY3LTI2Ljk0LTMuMTMtNDAuNjEtNC4yMkMxNTAuNDksMjg2LjQzLDEzMy4yMSwyNTMuNTMsMTI4LjEsMjM4LjIyWk0zNTYuNjMsMzY3LjY4Yy03MC44My0xMi41Ny05NC41MS00My43OS0xMDItNTkuMTEsMTEwLjI0LDE0Ljg3LDE5Mi43Nyw0Ni4yNywyMDUuNjEsNjIsNi43NSwxMy41NSwxMi4yOSwyNi4yNSwxNi44MSwzNy41QzQ1MS4xLDM5MS40OSw0MDcuOTQsMzc2Ljc4LDM1Ni42MywzNjcuNjhaIi8+PC9zdmc+");
-    background-position: center;
+    background-image: url(../images/blogs-logo.png);
     background-repeat: no-repeat;
-    background-size: contain;
-    width: 48px;
-    height: 48px;
+    background-size: cover;
+    width: 100px;
+    height: 46px;
+    transform: scale(1.9);
 }
+
 
 .navbar-nav .nav-item:hover {
     background-color: rgba(180, 190, 203, 0.4);
+}
+.user_nav {
+    font-weight: bolder;
 }
 
 .fotter-app {
@@ -69,6 +73,7 @@ div [class^="col-"] {
     padding: 1.25rem;
     position:relative;
     min-width: 220px;
+    min-height:400px;
 }
 
 h5.card-title {
@@ -80,6 +85,12 @@ h5.card-title {
     transition: 1s;
     
 }
+
+.admin_by {
+    font-size: 0.8rem;
+    color: grey;
+}
+
 
 .card-title i {
     font-size: 15px;
@@ -212,36 +223,46 @@ position:relative;
 
 .flags {
     background: #f5f5f5;
-    padding: .5rem;
-    right: 0;
-    left: unset;
+    padding: .2rem;
     text-align: center;
     min-width: 4rem;
     position: absolute;
-    top: 45px;
-    right: 16%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index:1;
-    display:none;
+    z-index: 1;
+    display: none;
+    right: 10px;
 }
 
+.languages {
+    position: relative;    
+}
+
+.flags_show {
+    display: flex;
+}
+
+
+.show_flag {
+    filter: none !important;
+}
 
 .flags img {
     object-fit: scale-down;
     height: 100%;
-    width: 4rem;
+    width: 3rem;
     filter: grayscale(1);
     transition: .35s all cubic-bezier(.65,.05,.36,1);
 }
 
 nav .fa-earth-africa {
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.16);
     margin-right: 16px;
     margin-top: 13px;
+    cursor:pointer;
 }
 a {
     color: #47649F;
@@ -336,7 +357,7 @@ body {
     position: fixed;
     bottom: 15px;
     right: 15px;
-    background: #0dcaf0;
+    background: #007dab;
     color: white;
     border-radius: 6px;
 }
@@ -363,7 +384,7 @@ body {
 .remove_post_btn {
     border: none;
     background: transparent;
-    color: #0dcaf0;
+    color: #007dab;
     width:fit-content;
 }
 
@@ -384,12 +405,12 @@ body {
 
 .add-post-modal {
     position: absolute;
-    top: 0% !important;
-    left: 16% !important;
+    top: 5% !important;
+    left: 20% !important;
     width: 75% !important;
     transform: none !important;
     max-width: 800px !important;
-    max-height:400px !important;
+    max-height: 400px !important;
 }
 .not_liked i {
     color: #a9a9a9;
@@ -397,7 +418,7 @@ body {
     cursor: pointer;
 }
 .already_liked i {
-    color: #0dcaf0;
+    color: #007dab;
     transform: scale(1.5);
 }
 
@@ -415,8 +436,39 @@ body {
     margin-bottom:10px;
 }
 .remove_post_btn i {
-    display: none;
+    display: flex;
 }
 #description_post {
     display:none;
+}
+
+.card-block .fa-earth-africa, .fa-lock {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+}
+.card-block .fa-earth-africa {
+   color: #007dab !important;
+}
+
+.btn-primary {
+    background-color: #007dab !important;
+    border:none;
+}
+.fa-lock {
+    color: #007dab !important;
+}
+
+.container-fluid-update {
+    position: absolute;
+    top: 62px;
+    left: 0px;
+    height: 90.7vh;
+    display: flex;
+    background-color: #007dab !important;
+}
+
+.container-fluid-update .row img {
+    height: 420px;
+    /* width: 100%; */
 }
