@@ -153,6 +153,9 @@
   <data name="PostName" xml:space="preserve">
     <value>Nom du post</value>
   </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>S'inscrire</value>
+  </data>
   <data name="Update" xml:space="preserve">
     <value>Modifier</value>
   </data>
