@@ -1,0 +1,474 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+}
+
+nav.bg-dark {
+    background-color: #007dab !important;
+}
+.navbar-brand {
+    background-image: url(../images/blogs-logo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 46px;
+    transform: scale(1.9);
+}
+
+
+.navbar-nav .nav-item:hover {
+    background-color: rgba(180, 190, 203, 0.4);
+}
+.user_nav {
+    font-weight: bolder;
+}
+
+.fotter-app {
+    width: 110%;
+    position: fixed;
+    bottom: 0px;
+}
+
+.app-container {
+
+}
+
+.container .row img {
+    height: 150px;
+    width: 100%;
+}
+
+div [class^="col-"] {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.card {
+    transition: 0.5s;
+    
+    
+}
+
+
+.card a {
+    text-decoration: none;
+    color: black !important;
+}
+
+.card-block {
+    padding: 1.25rem;
+    position:relative;
+    min-width: 220px;
+    min-height:400px;
+}
+
+h5.card-title {
+    cursor: pointer;
+}
+
+.card-title {
+    font-size: 15px;
+    transition: 1s;
+    
+}
+
+.admin_by {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+
+.card-title i {
+    font-size: 15px;
+    transition: 1s;
+    cursor: pointer;
+    color: #ffa710
+}
+
+.card-title i:hover {
+    transform: scale(1.25) rotate(100deg);
+    color: #18d4ca;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+
+.card-text {
+    height: 80px;
+}
+
+.interaction i {
+    cursor: pointer;
+}
+
+.card::before, .card::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale3d(0, 0, 1);
+    transition: transform .3s ease-out 0s;
+    background: rgba(255, 255, 255, 0.1);
+    content: '';
+    pointer-events: none;
+}
+
+.card::before {
+    transform-origin: left top;
+}
+
+.card::after {
+    transform-origin: right bottom;
+}
+
+.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+    transform: scale3d(1, 1, 1);
+}
+.cards {
+    display: flex;
+}
+.app-container-custum {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    width: 85% !important;
+}
+
+.row-custum {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-custum {
+    width: 23%;
+    margin-bottom: 37px;
+    position:relative;
+}
+
+.interaction {
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    display: none;
+    bottom: 15px;
+}
+
+
+.show-pop-up {
+    opacity: 1 !important;
+    display: flex !important;
+    background: #000000bf;
+}
+
+.center-all {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 21%) !important;
+}
+.center-all2 {
+    transform: translate(-50%,34%) !important;
+}
+
+.center-add {
+    position: absolute;
+    top: 50%;
+    right: 48px;
+}
+
+.center-add i {
+    transform: scale(2) ;
+}
+.interaction button {
+    border: none;
+    background: transparent;
+}
+.modal-header {
+justify-content:center;
+position:relative;
+}
+
+.modal-header img {
+    width: 143px;
+}
+
+.fa-xmark {
+    position: absolute;
+    top: 14px;
+    right: 15px;
+    transform: scale(1.2);
+    cursor:pointer;
+}
+
+.fa-user-tie {
+    margin-right: 7px;
+}
+
+.flags {
+    background: #f5f5f5;
+    padding: .2rem;
+    text-align: center;
+    min-width: 4rem;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    display: none;
+    right: 10px;
+}
+
+.languages {
+    position: relative;    
+}
+
+.flags_show {
+    display: flex;
+}
+
+
+.show_flag {
+    filter: none !important;
+}
+
+.flags img {
+    object-fit: scale-down;
+    height: 100%;
+    width: 3rem;
+    filter: grayscale(1);
+    transition: .35s all cubic-bezier(.65,.05,.36,1);
+}
+
+nav .fa-earth-africa {
+    color: white;
+    transform: scale(1.16);
+    margin-right: 16px;
+    margin-top: 13px;
+    cursor:pointer;
+}
+a {
+    color: #47649F;
+}
+
+body {
+    font-family: 'helvetica';
+}
+
+/*-- Bootstrap Override Style --*/
+
+
+/*-- Content Style --*/
+.post-footer-option li {
+    float: left;
+    margin-right: 50px;
+    padding-bottom: 15px;
+}
+
+    .post-footer-option li a {
+        color: #AFB4BD;
+        font-weight: 500;
+        font-size: 1.3rem;
+    }
+
+.photo-profile {
+    border: 1px solid #DDD;
+}
+
+.anchor-username h4 {
+    font-weight: bold;
+}
+
+.anchor-time {
+    color: #ADB2BB;
+    font-size: 1.2rem;
+}
+
+.post-footer-comment-wrapper {
+    background-color: #F6F7F8;
+}
+.post {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 23px 30px !important;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.post a {
+    text-decoration : none !important;
+    color: #000000bf;
+}
+
+.post h4 {
+     margin-left: 6px
+}
+.panel {
+    border:none;
+}
+.post .like-div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.like-post {
+    background: none;
+    border: none;
+    width: 30px;
+    padding: 0px !important;
+    text-align: end;
+}
+
+.post-footer-option{
+    padding-left:0px !important;
+}
+
+body {
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+}
+.card a {
+    margin-top : 6px;
+}
+
+.add-post {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #007dab;
+    color: white;
+    border-radius: 6px;
+}
+
+.add-post .fa-plus {
+    transform:scale(1.5);
+    color:#fff !important;
+    cursor:pointer;
+}
+
+
+.costum-model-content {
+    width:fit-content;
+}
+
+.post-img {
+    width: 120px;
+    height: 120px;
+}
+#add_blog_hidden, .remove_blog_hidden {
+    display: none;
+}
+
+.remove_post_btn {
+    border: none;
+    background: transparent;
+    color: #007dab;
+    width:fit-content;
+}
+
+#add_blog_btn {
+    display: none;
+}
+
+.remove_post_form {
+    position: relative;
+}
+
+.remove_post_form form {
+    width: fit-content;
+    position: absolute;
+    right: -17px;
+    top: -3px;
+}
+
+.add-post-modal {
+    position: absolute;
+    top: 5% !important;
+    left: 20% !important;
+    width: 75% !important;
+    transform: none !important;
+    max-width: 800px !important;
+    max-height: 400px !important;
+}
+.not_liked i {
+    color: #a9a9a9;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+.already_liked i {
+    color: #007dab;
+    transform: scale(1.5);
+}
+
+.already_liked span, .not_liked span {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.add_comment_hidden {
+    display:none;
+}
+#description_comment {
+    display:none;
+}
+#exemple { 
+    margin-bottom:10px;
+}
+.remove_post_btn i {
+    display: flex;
+}
+#description_post {
+    display:none;
+}
+
+.card-block .fa-earth-africa, .fa-lock {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+}
+.card-block .fa-earth-africa {
+   color: #007dab !important;
+}
+
+.btn-primary {
+    background-color: #007dab !important;
+    border:none;
+}
+.fa-lock {
+    color: #007dab !important;
+}
+
+.container-fluid-update {
+    position: absolute;
+    top: 62px;
+    left: 0px;
+    height: 90.7vh;
+    display: flex;
+    background-color: #007dab !important;
+}
+
+.container-fluid-update .row img {
+    height: 420px;
+    /* width: 100%; */
+}

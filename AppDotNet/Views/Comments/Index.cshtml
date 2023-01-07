@@ -1,0 +1,106 @@
+﻿@using AppDotNet.Models;
+@model IEnumerable<AppDotNet.Models.CommentModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@inject LanguageService language
+
+<link rel="stylesheet" href="~/css/comments.css" asp-append-version="true" />
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+
+@{
+    if (Model != null)
+    {
+        <div class="container">
+
+            <div class="col-md-5 post">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <section class="post-heading">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="media">
+                                        <div class="media-left">
+                                        </div>
+                                        <div class="media-body">
+                                            <a class="anchor-username"><h4 class="media-heading"> </h4></a>
+                                            @Html.DisplayFor(modelItem =>  Model.FirstOrDefault().postName)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="post-body">
+                            @Html.DisplayFor(modelItem =>  Model.FirstOrDefault().postDescription)
+                        </section>
+
+
+                        <div class="container justify-content-center mt-5 border-left border-right">
+                            @foreach (var item in Model)
+                            {
+                                <div class="d-flex justify-content-center py-2 ">
+                                    <div class="second py-2 px-2 comment-item">
+                                        <div class="d-flex justify-content-between py-1 pt-2">
+                                            <div><img src="../../images/userComments.png" width="18"><span class="text2">@(
+                                            User.Identity.Name
+                                            )</span></div>
+                                        </div>
+                                        <span class="text1">@Html.Raw(item.Description)</span>
+
+                                    </div>
+                                </div>
+                            }
+                            @{
+                                if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="d-flex justify-content-center pt-3 pb-2">
+                                        <form asp-controller="Comments" action="/comments/create" method="post" class="add-comment-form">
+                                            @Html.AntiForgeryToken()
+                                            <input type="search" name="Description"  id="description_comment" placeholder="+ Ajouter un commentaire" class="form-control addtxt">
+                                            <div id="example" ></div>                                           
+                                            <input name="post" type="text"  class="add_comment_hidden"></input>
+                                            <button id="add_coment_submit" class="btn btn-primary mt-1 ">@language.Getkey("AddComment") </button>
+                                        </form>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    }
+}
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+
+<script>
+    let inputDescription = document.querySelector("#description_comment");
+    var editor = new FroalaEditor('#example',{
+      events: {
+        'charCounter.update': function () {
+                inputDescription.value = this.el.innerHTML;//innerHTML
+        }
+      }
+    });
+
+    document.querySelectorAll(".add_comment_hidden").forEach(function (element) {
+        element.value = localStorage.getItem('selected_post');
+    });
+       
+    
+
+</script>
+

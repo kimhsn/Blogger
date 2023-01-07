@@ -17,10 +17,270 @@ namespace AppDotNet.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AppDotNet.Entities.Blog", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("AdminId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedTimestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Prive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AdminId");
+
+                    b.ToTable("Blogs");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(304),
+                            Name = "Ma vie en temps de crise",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(372),
+                            Name = "Les aventures de …",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(381),
+                            Name = "qualité produit",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(390),
+                            Name = "Je grandis avec vous",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(438),
+                            Name = "multimedia créatif",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(451),
+                            Name = "Temoignage d’experts",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(460),
+                            Name = "smartphone avis",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(468),
+                            Name = "techno simple",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(476),
+                            Name = "Parlez vous le blog ?",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 10,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(486),
+                            Name = "Ultra Blog",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 11,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(494),
+                            Name = "Influence toi",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 12,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(503),
+                            Name = "Mon microblog",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 13,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(511),
+                            Name = "Vlogy",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 14,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(519),
+                            Name = "Vlog expert",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 15,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(528),
+                            Name = "Perfection blog",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 16,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(536),
+                            Name = "Blog Towns",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 17,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(544),
+                            Name = "Blog Country",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 18,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(554),
+                            Name = "Blog It",
+                            Prive = true
+                        },
+                        new
+                        {
+                            ID = 19,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(563),
+                            Name = "WeBlog",
+                            Prive = false
+                        },
+                        new
+                        {
+                            ID = 20,
+                            CreatedTimestamp = new DateTime(2023, 1, 6, 22, 18, 3, 350, DateTimeKind.Local).AddTicks(571),
+                            Name = "NetBlog",
+                            Prive = true
+                        });
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Comment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("CreatedTimestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PostID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PostID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Likes", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("postID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("postID");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Post", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("BlogID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTimestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NbLikes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BlogID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Posts");
+                });
 
             modelBuilder.Entity("AppDotNet.Entities.User", b =>
                 {
@@ -91,16 +351,46 @@ namespace AppDotNet.Migrations
                         {
                             Id = "superviseur",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "41fee155-1789-44ee-93bf-37727a8a6ca5",
+                            ConcurrencyStamp = "8f196d68-b485-43df-b899-edb2787dd840",
                             Email = "superviseur@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "JOHN_SUPERVISEUR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDCrAcL3gPuuTR5cpHoOvx3rSD6gs6M8JdJDhAv3pNEgEjGxQQS1QNhhYjeTkYeDOw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0d0d6e20-879c-42b4-9c5b-7ca7236a6bdb",
+                            SecurityStamp = "c8161dcf-d527-4f0d-a4d4-da59439854e0",
                             TwoFactorEnabled = false,
                             UserName = "john superviseur"
+                        },
+                        new
+                        {
+                            Id = "admin",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e792129d-4cde-4880-a07d-16756a33a6ae",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "JOHN_ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0f3ff21c-9944-489d-815e-d2c1aeca72be",
+                            TwoFactorEnabled = false,
+                            UserName = "john admin"
+                        },
+                        new
+                        {
+                            Id = "user",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "50a4a960-41f1-4973-a2c6-7206936013b1",
+                            Email = "user@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "JOHN_USER",
+                            PasswordHash = "AQAAAAEAACcQAAAAENZzMPJwDZMu2HC3hfS5N3scdtb11VBrZIbrU0GglI5eT1dZChmRlcKxxSrYPl1rJQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2a98a18c-fb7f-4fcf-ac1d-3aae078398ab",
+                            TwoFactorEnabled = false,
+                            UserName = "john user"
                         });
                 });
 
@@ -160,7 +450,7 @@ namespace AppDotNet.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -185,7 +475,7 @@ namespace AppDotNet.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -247,6 +537,16 @@ namespace AppDotNet.Migrations
                         {
                             UserId = "superviseur",
                             RoleId = "id_superviseur"
+                        },
+                        new
+                        {
+                            UserId = "admin",
+                            RoleId = "id_admin_blog"
+                        },
+                        new
+                        {
+                            UserId = "user",
+                            RoleId = "id_utilisateur"
                         });
                 });
 
@@ -269,6 +569,66 @@ namespace AppDotNet.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Blog", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.User", "Admin")
+                        .WithMany("Blogs")
+                        .HasForeignKey("AdminId");
+
+                    b.Navigation("Admin");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Comment", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppDotNet.Entities.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Likes", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.Post", "post")
+                        .WithMany("Likes")
+                        .HasForeignKey("postID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppDotNet.Entities.User", "user")
+                        .WithMany("Likes")
+                        .HasForeignKey("userId");
+
+                    b.Navigation("post");
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Post", b =>
+                {
+                    b.HasOne("AppDotNet.Entities.Blog", "Blog")
+                        .WithMany("Posts")
+                        .HasForeignKey("BlogID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppDotNet.Entities.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -320,6 +680,29 @@ namespace AppDotNet.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Blog", b =>
+                {
+                    b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.Post", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Likes");
+                });
+
+            modelBuilder.Entity("AppDotNet.Entities.User", b =>
+                {
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("Likes");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

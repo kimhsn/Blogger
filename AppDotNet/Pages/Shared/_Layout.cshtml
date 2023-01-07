@@ -1,51 +1,115 @@
-﻿<!DOCTYPE html>
+﻿
+@using AppDotNet.Models;
+@{
+    ViewData["Title"] = "Home Page";
+}
+@inject LanguageService language
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AppDotNet</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site2.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AppDotNet.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">AppDotNet</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/blogs"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-md-auto gap-2">
+                    <div class="languages">
+                         <i class="fa-solid fa-earth-africa"></i>
+                         <div class="flags">
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US" class="nav-link">
+                                <img src="/images/great-britain.png" class="en_flag" />
+
+                            </a>
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="fr-FR" class="nav-link">
+
+                                <img src="/images/france.png" class="fr_flag" />
+                            </a>
+                         </div>
+                    </div>
+                   
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+
+                             <li class="nav-item dropdown rounded">
+                                <a class="nav-link dropdown-toggle user_nav" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> @(User.Identity.Name) </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                  
+                                    <li>
+                                     <!--<a class="dropdown-item" href="#">Se deconneter</a> -->
+                                       <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                           <button type="submit" class="dropdown-item">Se déconnecter</button>
+                                       </form>
+                                    </li>
+                                </ul>
+                             </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item rounded">
+                                <a class="nav-link active" aria-current="page" asp-area="Identity" asp-page="/Account/Login">@language.Getkey("LogIn")</a>
+                            </li>
+                            <li class="nav-item rounded">
+                                <a class="nav-link active" aria-current="page" asp-area="Identity" asp-page="/Account/Register">@language.Getkey("SignIn")</a>
+                            </li>
+
+                        }
+                    }
+                   
+                   
+                </ul>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+        </div>
+       
+       
+    </nav>
+   
+    <div class="container app-container app-container-custum">
             @RenderBody()
-        </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - AppDotNet - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+ 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+
+    // js selectors
+
+    document.querySelector(".fa-earth-africa").addEventListener('click', () => {
+
+            document.querySelector(".flags").classList.toggle("flags_show");
+    });
+
+    document.querySelector(".en_flag").addEventListener('click', () => {
+
+        localStorage.setItem('lang','en')
+
+    });
+
+    document.querySelector(".fr_flag").addEventListener('click', () => {
+
+        localStorage.setItem('lang', 'fr');
+    });
+
+
+</script>
 </body>
 </html>
